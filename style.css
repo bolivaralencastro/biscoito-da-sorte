@@ -59,9 +59,9 @@ body.app-loading .daily-notice {
 
 .daily-notice {
     position: fixed;
-    top: 52px;
+    bottom: 68px;
     left: 50%;
-    transform: translate(-50%, -8px);
+    transform: translate(-50%, 12px);
     color: #b5b5b5;
     padding: 6px 10px;
     font-size: 0.7rem;
@@ -81,14 +81,14 @@ body.app-loading .daily-notice {
 }
 
 .footer-link {
-    color: #e0e0e0;
+    color: #b5b5b5;
     text-decoration: none;
     font-size: 0.8rem;
     transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-    color: var(--text);
+    color: #9a9a9a;
 }
 
 .stage {
