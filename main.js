@@ -109,6 +109,7 @@ const IMAGE_BASES = {
   broken: 'biscoito-quebrado',
   crumbs: 'biscoito-farelo'
 };
+const EMPTY_DATA_URI = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
 let imageFormat = 'png';
 let cookieState = 'intact';
@@ -140,6 +141,10 @@ function detectWebpSupport() {
 }
 
 function updateCookieImage() {
+  if (cookieState === 'clean') {
+    cookieImage.src = EMPTY_DATA_URI;
+    return;
+  }
   const base = IMAGE_BASES[cookieState] || IMAGE_BASES.intact;
   cookieImage.src = `${base}.${imageFormat}`;
 }
