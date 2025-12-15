@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerador de Imagem OpenGraph</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #f0a95a;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #f0a95a;
+        }
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .code-block .comment {
+            color: #6a9955;
+        }
+        .code-block .tag {
+            color: #569cd6;
+        }
+        .code-block .attribute {
+            color: #9cdcfe;
+        }
+        .code-block .value {
+            color: #ce9178;
+        }
+        .tip {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #4caf50;
+        }
+        .tip p {
+            margin: 0;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ OpenGraph Configurado com Sucesso!</h1>
+        
+        <div class="instructions">
+            <h3>📋 O que foi adicionado:</h3>
+            <ul>
+                <li><strong>OpenGraph Tags</strong>: Para Facebook, LinkedIn e outras redes</li>
+                <li><strong>Twitter Cards</strong>: Para compartilhamento no Twitter/X</li>
+                <li><strong>Meta Tags</strong>: Descrição, autor e palavras-chave para SEO</li>
+                <li><strong>Favicon</strong>: Ícone de biscoito da sorte em SVG</li>
+            </ul>
+        </div>
+        
+        <h3>🔧 Configurações Atuais:</h3>
+        <div class="code-block">
+            <span class="comment">&lt;!-- OpenGraph --&gt;</span><br>
+            <span class="tag">&lt;meta</span> <span class="attribute">property=</span><span class="value">"og:title"</span> <span class="attribute">content=</span><span class="value">"Sorte do Dia - Biscoito da Sorte Interativo"</span><span class="tag">&gt;</span><br>
+            <span class="tag">&lt;meta</span> <span class="attribute">property=</span><span class="value">"og:description"</span> <span class="attribute">content=</span><span class="value">"Quebre o biscoito virtual, leia sua sorte..."</span><span class="tag">&gt;</span><br>
+            <span class="tag">&lt;meta</span> <span class="attribute">property=</span><span class="value">"og:image"</span> <span class="attribute">content=</span><span class="value">"https://www.bolivaralencastro.com.br/sorte-do-dia/biscoito-inteiro.png"</span><span class="tag">&gt;</span><br>
+            <span class="tag">&lt;meta</span> <span class="attribute">property=</span><span class="value">"og:url"</span> <span class="attribute">content=</span><span class="value">"https://www.bolivaralencastro.com.br/sorte-do-dia/"</span><span class="tag">&gt;</span><br>
+            <br>
+            <span class="comment">&lt;!-- Twitter Card --&gt;</span><br>
+            <span class="tag">&lt;meta</span> <span class="attribute">name=</span><span class="value">"twitter:card"</span> <span class="attribute">content=</span><span class="value">"summary_large_image"</span><span class="tag">&gt;</span><br>
+            <span class="tag">&lt;meta</span> <span class="attribute">name=</span><span class="value">"twitter:title"</span> <span class="attribute">content=</span><span class="value">"Sorte do Dia - Biscoito da Sorte Interativo"</span><span class="tag">&gt;</span><br>
+        </div>
+        
+        <div class="tip">
+            <p>💡 <strong>Dica:</strong> Quando você compartilhar este link em redes sociais, agora aparecerá uma pré-visualização rica com título, descrição e imagem do biscoito da sorte!</p>
+        </div>
+        
+        <div class="instructions">
+            <h3>🎨 Personalização:</h3>
+            <p>Você pode personalizar as seguintes informações no arquivo <code>index.html</code>:</p>
+            <ul>
+                <li><strong>Título</strong>: Mude o conteúdo de <code>og:title</code> e <code>twitter:title</code></li>
+                <li><strong>Descrição</strong>: Atualize <code>og:description</code> e <code>twitter:description</code></li>
+                <li><strong>Imagem</strong>: Troque a URL em <code>og:image</code> e <code>twitter:image</code> (recomendado: 1200x630px)</li>
+                <li><strong>URL</strong>: Atualize <code>og:url</code> para o endereço final do seu projeto</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
