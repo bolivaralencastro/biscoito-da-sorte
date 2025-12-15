@@ -150,6 +150,8 @@ function setupFortuneStripDrag() {
   let dragging = false;
   let moved = false;
   let dragOffset = { x: 0, y: 0 };
+  let startPos = { x: 0, y: 0 };
+  let skipClick = false;
 
   const onPointerDown = (event) => {
     if (!fortuneStrip.classList.contains('revealed')) return;
@@ -160,12 +162,14 @@ function setupFortuneStripDrag() {
     const rect = fortuneStrip.getBoundingClientRect();
     dragOffset.x = event.clientX - rect.left;
     dragOffset.y = event.clientY - rect.top;
+    startPos.x = event.clientX;
+    startPos.y = event.clientY;
   };
 
   const onPointerMove = (event) => {
     if (!dragging) return;
-    const deltaX = Math.abs(event.movementX || 0);
-    const deltaY = Math.abs(event.movementY || 0);
+    const deltaX = Math.abs(event.clientX - startPos.x);
+    const deltaY = Math.abs(event.clientY - startPos.y);
     if (deltaX > 2 || deltaY > 2) {
       moved = true;
     }
@@ -200,6 +204,8 @@ function setupFortuneStripDrag() {
     if (moved) {
       event.preventDefault();
       event.stopPropagation();
+      skipClick = true;
+      setTimeout(() => { skipClick = false; }, 0);
     }
   };
 
@@ -207,6 +213,14 @@ function setupFortuneStripDrag() {
   fortuneStrip.addEventListener('pointermove', onPointerMove);
   fortuneStrip.addEventListener('pointerup', onPointerUp);
   fortuneStrip.addEventListener('pointercancel', onPointerUp);
+
+  fortuneStrip.addEventListener('click', (event) => {
+    if (skipClick) {
+      event.preventDefault();
+      event.stopPropagation();
+      skipClick = false;
+    }
+  }, true);
 }
 
 // Detect WebP support
