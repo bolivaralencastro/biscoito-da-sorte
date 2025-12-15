@@ -393,7 +393,7 @@ function revealFortune(options = {}) {
 // Update day data
 function updateDayData(partial) {
   dayData = { ...dayData, ...partial };
-  persistDayData();
+  persistDayData(dayData);
 }
 
 // Ensure messages exist for state
@@ -428,7 +428,7 @@ async function showCurrentMessage() {
     showDailyLockNotice(message);
     if (dayData.messageStage === 'initial') {
       dayData.messageStage = 'refresh';
-      persistDayData();
+      persistDayData(dayData);
     }
   }
 }
