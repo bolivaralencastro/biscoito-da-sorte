@@ -33,12 +33,23 @@ export async function loadDayData() {
     }
   }
 
+  if (!data) {
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEYS.dayData);
+      if (raw) data = JSON.parse(raw);
+    } catch (error) {
+      console.warn('Não foi possível ler o estado diário no sessionStorage:', error);
+    }
+  }
+
   if (!data || data.date !== today) {
     data = await createDefaultDayData();
     persistDayData(data);
   } else {
     const defaults = await createDefaultDayData();
     data = { ...defaults, ...data, date: today };
+    // Normalize storages in case algum meio falhou
+    persistDayData(data);
   }
 
   return data;
@@ -49,6 +60,12 @@ export function persistDayData(data) {
     localStorage.setItem(STORAGE_KEYS.dayData, JSON.stringify(data));
   } catch (error) {
     console.warn('Não foi possível salvar o estado diário no localStorage:', error);
+  }
+
+  try {
+    sessionStorage.setItem(STORAGE_KEYS.dayData, JSON.stringify(data));
+  } catch (error) {
+    console.warn('Não foi possível salvar o estado diário no sessionStorage:', error);
   }
 
   try {
