@@ -148,11 +148,13 @@ function handleFortuneStripClick() {
 function setupFortuneStripDrag() {
   if (!fortuneStrip) return;
   let dragging = false;
+  let moved = false;
   let dragOffset = { x: 0, y: 0 };
 
   const onPointerDown = (event) => {
     if (!fortuneStrip.classList.contains('revealed')) return;
     dragging = true;
+    moved = false;
     fortuneStrip.setPointerCapture(event.pointerId);
 
     const rect = fortuneStrip.getBoundingClientRect();
@@ -162,6 +164,11 @@ function setupFortuneStripDrag() {
 
   const onPointerMove = (event) => {
     if (!dragging) return;
+    const deltaX = Math.abs(event.movementX || 0);
+    const deltaY = Math.abs(event.movementY || 0);
+    if (deltaX > 2 || deltaY > 2) {
+      moved = true;
+    }
     const stageRect = stage.getBoundingClientRect();
     const stripRect = fortuneStrip.getBoundingClientRect();
     const margin = 12;
@@ -188,6 +195,12 @@ function setupFortuneStripDrag() {
     if (!dragging) return;
     dragging = false;
     fortuneStrip.releasePointerCapture(event.pointerId);
+
+    // Se não moveu, deixa o click original acontecer (flip); se moveu, previne o clique final
+    if (moved) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
   };
 
   fortuneStrip.addEventListener('pointerdown', onPointerDown);
