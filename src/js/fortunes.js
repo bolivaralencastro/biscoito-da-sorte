@@ -2,7 +2,7 @@
 
 import { BASE_FORTUNES } from './config.js';
 
-let fortunes = [...BASE_FORTUNES];
+let fortunes = normalizeFortunes(BASE_FORTUNES);
 
 export function loadFortunesFromJson() {
   return fetch('data/fortunes.json')
@@ -11,10 +11,10 @@ export function loadFortunesFromJson() {
       return response.json();
     })
     .then(data => {
-      const jsonTexts = data.map(item => item.text).filter(Boolean);
-      const unique = Array.from(new Set([...fortunes, ...jsonTexts]));
-      fortunes = unique;
-      return unique;
+      const loaded = normalizeFortunes(data);
+      const dedup = dedupeByText([...fortunes, ...loaded]);
+      fortunes = dedup;
+      return dedup;
     })
     .catch(error => {
       console.error('Erro ao carregar frases externas, usando base local:', error);
@@ -40,4 +40,36 @@ export function generateLuckyNumbers() {
 
 export function getFortunes() {
   return [...fortunes];
+}
+
+function normalizeFortunes(list) {
+  return (list || [])
+    .map(item => {
+      if (!item) return null;
+      if (typeof item === 'string') {
+        return { text: item, tone: ['classico'], theme: ['sabedoria'] };
+      }
+      if (item.text) {
+        return {
+          text: item.text,
+          tone: Array.isArray(item.tone) ? item.tone : ['classico'],
+          theme: Array.isArray(item.theme) ? item.theme : ['sabedoria']
+        };
+      }
+      return null;
+    })
+    .filter(Boolean);
+}
+
+function dedupeByText(list) {
+  const seen = new Set();
+  const result = [];
+  for (const item of list) {
+    if (!item || !item.text) continue;
+    const key = item.text.trim();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(item);
+  }
+  return result;
 }

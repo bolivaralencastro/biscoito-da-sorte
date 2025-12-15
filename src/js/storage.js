@@ -66,6 +66,8 @@ export async function createDefaultDayData() {
     state: 'intact',
     text: '',
     numbers: '',
+    fortuneTone: [],
+    fortuneTheme: [],
     crunched: false,
     cleaned: false,
     messageInitial: initial,

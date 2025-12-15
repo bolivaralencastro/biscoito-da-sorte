@@ -1,210 +1,135 @@
 [
-  {
-    "text": "O gênio é um por cento de inspiração e noventa e nove por cento de transpiração.",
-    "author": "Thomas Edison"
-  },
-  {
-    "text": "Você pode observar muito apenas assistindo.",
-    "author": "Yogi Berra"
-  },
-  {
-    "text": "Uma casa dividida contra si mesma não pode ficar de pé.",
-    "author": "Abraham Lincoln"
-  },
-  {
-    "text": "As dificuldades aumentam quanto mais perto chegamos do objetivo.",
-    "author": "Johann Wolfgang von Goethe"
-  },
-  {
-    "text": "O destino está em suas mãos e de mais ninguém.",
-    "author": "Byron Pulsifer"
-  },
-  {
-    "text": "A vida é o que acontece enquanto você está ocupado fazendo outros planos.",
-    "author": "John Lennon"
-  },
-  {
-    "text": "No meio da dificuldade encontra-se a oportunidade.",
-    "author": "Albert Einstein"
-  },
-  {
-    "text": "A imaginação é mais importante que o conhecimento.",
-    "author": "Albert Einstein"
-  },
-  {
-    "text": "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
-    "author": "Robert Collier"
-  },
-  {
-    "text": "A felicidade não é algo pronto. Ela vem de suas próprias ações.",
-    "author": "Dalai Lama"
-  },
-  {
-    "text": "Acredite que você pode e você já está no meio do caminho.",
-    "author": "Theodore Roosevelt"
-  },
-  {
-    "text": "O único modo de fazer um excelente trabalho é amar o que você faz.",
-    "author": "Steve Jobs"
-  },
-  {
-    "text": "A vida é 10% o que acontece com você e 90% como você reage a isso.",
-    "author": "Charles R. Swindoll"
-  },
-  {
-    "text": "Não espere por oportunidades, crie você mesmo.",
-    "author": "George Bernard Shaw"
-  },
-  {
-    "text": "O fracasso é simplesmente a oportunidade de começar de novo, desta vez de forma mais inteligente.",
-    "author": "Henry Ford"
-  },
-  {
-    "text": "A persistência realiza o impossível.",
-    "author": "Provérbio Chinês"
-  },
-  {
-    "text": "O otimista vê a rosa e não os espinhos; o pessimista fixa nos espinhos, esquecendo a rosa.",
-    "author": "Kahlil Gibran"
-  },
-  {
-    "text": "A maior glória não é nunca cair, mas levantar-se sempre depois de uma queda.",
-    "author": "Nelson Mandela"
-  },
-  {
-    "text": "O sucesso é ir de fracasso em fracasso sem perder o entusiasmo.",
-    "author": "Winston Churchill"
-  },
-  {
-    "text": "A vida é uma jornada, não um destino.",
-    "author": "Ralph Waldo Emerson"
-  },
-  {
-    "text": "Acredite em si mesmo e tudo será possível.",
-    "author": "Provérbio Popular"
-  },
-  {
-    "text": "A sorte favorece a mente preparada.",
-    "author": "Louis Pasteur"
-  },
-  {
-    "text": "O conhecimento é poder.",
-    "author": "Francis Bacon"
-  },
-  {
-    "text": "A paciência é amarga, mas seu fruto é doce.",
-    "author": "Jean-Jacques Rousseau"
-  },
-  {
-    "text": "A amizade duplica as alegrias e divide as tristezas.",
-    "author": "Francis Bacon"
-  },
-  {
-    "text": "A esperança é a última que morre.",
-    "author": "Provérbio Popular"
-  },
-  {
-    "text": "A verdadeira sabedoria está em reconhecer a própria ignorância.",
-    "author": "Sócrates"
-  },
-  {
-    "text": "A bondade é a linguagem que os surdos podem ouvir e os cegos podem ver.",
-    "author": "Mark Twain"
-  },
-  {
-    "text": "A educação é a arma mais poderosa que você pode usar para mudar o mundo.",
-    "author": "Nelson Mandela"
-  },
-  {
-    "text": "A imaginação é a prévia das atrações vindouras da vida.",
-    "author": "Albert Einstein"
-  },
-  {
-    "text": "A gratidão é a memória do coração.",
-    "author": "Jean Baptiste Massieu"
-  },
-  {
-    "text": "A felicidade não é ter o que você quer, mas querer o que você tem.",
-    "author": "Provérbio Chinês"
-  },
-  {
-    "text": "A vida é feita de escolhas. Escolha ser feliz.",
-    "author": "Provérbio Popular"
-  },
-  {
-    "text": "A coragem não é a ausência de medo, mas o triunfo sobre ele.",
-    "author": "Nelson Mandela"
-  },
-  {
-    "text": "A simplicidade é o último grau de sofisticação.",
-    "author": "Leonardo da Vinci"
-  },
-  {
-    "text": "A criatividade é a inteligência se divertindo.",
-    "author": "Albert Einstein"
-  },
-  {
-    "text": "A humildade é a base de todas as virtudes.",
-    "author": "Confúcio"
-  },
-  {
-    "text": "A esperança é um sonho acordado.",
-    "author": "Aristóteles"
-  },
-  {
-    "text": "A amizade é um amor que nunca morre.",
-    "author": "Mário Quintana"
-  },
-  {
-    "text": "A vida é uma peça de teatro que não permite ensaios.",
-    "author": "Charles Chaplin"
-  },
-  {
-    "text": "A felicidade é uma borboleta que, quando perseguida, está sempre além do seu alcance.",
-    "author": "Nathaniel Hawthorne"
-  },
-  {
-    "text": "A verdadeira amizade resiste ao tempo, à distância e ao silêncio.",
-    "author": "Tupac Shakur"
-  },
-  {
-    "text": "A vida é uma aventura ousada ou não é nada.",
-    "author": "Helen Keller"
-  },
-  {
-    "text": "A paz começa com um sorriso.",
-    "author": "Madre Teresa de Calcutá"
-  },
-  {
-    "text": "A liberdade é a capacidade de escolher a própria vida.",
-    "author": "Jean-Paul Sartre"
-  },
-  {
-    "text": "A felicidade é a única coisa que se multiplica quando é dividida.",
-    "author": "Albert Schweitzer"
-  },
-  {
-    "text": "A vida é uma oportunidade, aproveite-a.",
-    "author": "Madre Teresa de Calcutá"
-  },
-  {
-    "text": "A esperança é a coisa com penas que pousa na alma.",
-    "author": "Emily Dickinson"
-  },
-  {
-    "text": "A amizade é como um tesouro, difícil de encontrar e difícil de perder.",
-    "author": "Provérbio Popular"
-  },
-  {
-    "text": "A felicidade é uma escolha, não um resultado.",
-    "author": "Provérbio Popular"
-  },
-  {
-    "text": "A verdadeira riqueza é a saúde, não peças de ouro e prata.",
-    "author": "Mahatma Gandhi"
-  },
-  {
-    "text": "A vida é uma escola, e a experiência é a melhor professora.",
-    "author": "Provérbio Popular"
-  }
+  { "text": "O plano está tímido; dê um passo e ele perde a vergonha.", "tone": ["acao","humor"], "theme": ["progresso","trabalho"] },
+  { "text": "Sua ideia só quer um café e quinze minutos de coragem.", "tone": ["acao","humor"], "theme": ["criatividade","progresso"] },
+  { "text": "Avance meio metro; o caminho se revela por educação.", "tone": ["acao","poetico"], "theme": ["progresso","tempo"] },
+  { "text": "Hoje cabe um passo curto com efeito dominó longo.", "tone": ["acao","pragmatico"], "theme": ["progresso","trabalho"] },
+  { "text": "Empurre o medo para a cadeira do canto e siga.", "tone": ["acao","humor"], "theme": ["autocuidado","progresso"] },
+  { "text": "Seu futuro estalou os dedos: hora de aparecer.", "tone": ["acao","poetico"], "theme": ["progresso","tempo"] },
+  { "text": "Faça algo ridiculamente pequeno e observe o milagre.", "tone": ["acao","humor"], "theme": ["progresso","criatividade"] },
+  { "text": "Hoje é bom dia para tentar o que você adia há meses.", "tone": ["acao","pragmatico"], "theme": ["progresso","tempo"] },
+  { "text": "Resolver um item micro vale por um alívio macro.", "tone": ["acao","pragmatico"], "theme": ["trabalho","progresso"] },
+  { "text": "Sua ideia quer caminhar: calce-a com um rascunho.", "tone": ["acao","poetico"], "theme": ["criatividade","progresso"] },
+  { "text": "Mover-se 1% já dá um troféu invisível.", "tone": ["acao","humor"], "theme": ["progresso","autocuidado"] },
+  { "text": "Comece torto; o ajuste fino é vaidoso e vem depois.", "tone": ["acao","humor"], "theme": ["criatividade","progresso"] },
+  { "text": "Seu botão de enviar está piscando para você.", "tone": ["acao","humor"], "theme": ["trabalho","progresso"] },
+  { "text": "Faça hoje para o amanhã não vir tirar satisfação.", "tone": ["acao","humor"], "theme": ["tempo","progresso"] },
+  { "text": "O começo é curto; o alívio é longo.", "tone": ["acao","poetico"], "theme": ["progresso","autocuidado"] },
+  { "text": "Pule a perfeição, mire o feito: é mais fofo.", "tone": ["acao","humor"], "theme": ["criatividade","progresso"] },
+  { "text": "Três linhas escritas vencem um capítulo imaginado.", "tone": ["acao","pragmatico"], "theme": ["criatividade","progresso"] },
+  { "text": "Envie antes que o medo peça revisão.", "tone": ["acao","humor"], "theme": ["progresso","trabalho"] },
+  { "text": "Seja breve: o universo gosta de gente que não enrola.", "tone": ["acao","humor"], "theme": ["progresso","tempo"] },
+  { "text": "Abrir a janela é um ato estratégico.", "tone": ["acao","poetico"], "theme": ["pausa","autocuidado"] },
+  { "text": "Você e o próximo passo têm um encontro marcado.", "tone": ["acao","poetico"], "theme": ["progresso","tempo"] },
+  { "text": "Hoje é bom dia para desapegar do rascunho número sete.", "tone": ["acao","humor"], "theme": ["criatividade","progresso"] },
+  { "text": "Tire a ideia do banho-maria; sirva morna mesmo.", "tone": ["acao","humor"], "theme": ["trabalho","criatividade"] },
+  { "text": "Planejar é ótimo, mas a ação gosta de comer quente.", "tone": ["acao","humor"], "theme": ["progresso","trabalho"] },
+  { "text": "Reduza a missão até caber no bolso.", "tone": ["acao","pragmatico"], "theme": ["progresso","autocuidado"] },
+  { "text": "Hoje o progresso anda de chinelo, mas anda.", "tone": ["acao","humor"], "theme": ["progresso","cotidiano"] },
+  { "text": "Empurre a porta: ela é leve e anda carente.", "tone": ["acao","poetico"], "theme": ["progresso","curiosidade"] },
+  { "text": "Uma microvitória deixa o dia com gosto de festa pequena.", "tone": ["acao","humor"], "theme": ["progresso","autocuidado"] },
+  { "text": "Comece onde a preguiça não enxergar.", "tone": ["acao","humor"], "theme": ["progresso","criatividade"] },
+  { "text": "Seu passo miúdo é gigante na escala do tempo.", "tone": ["acao","poetico"], "theme": ["progresso","tempo"] },
+  { "text": "Respire como quem sabe que não precisa correr.", "tone": ["calma","poetico"], "theme": ["pausa","autocuidado"] },
+  { "text": "O mundo pode esperar cinco minutos de silêncio.", "tone": ["calma","pragmatico"], "theme": ["pausa","tempo"] },
+  { "text": "Hoje o ritmo é de quem degusta chá.", "tone": ["calma","humor"], "theme": ["pausa","cotidiano"] },
+  { "text": "Sua ansiedade precisa de um travesseiro, não de pauta.", "tone": ["calma","humor"], "theme": ["autocuidado","pausa"] },
+  { "text": "Estique o dia como elástico: sem romper, só ceder.", "tone": ["calma","poetico"], "theme": ["tempo","pausa"] },
+  { "text": "Fazer nada também é fazer espaço.", "tone": ["calma","pragmatico"], "theme": ["pausa","autocuidado"] },
+  { "text": "Deixe uma tarefa para amanhã como presente para você descansado.", "tone": ["calma","humor"], "theme": ["tempo","autocuidado"] },
+  { "text": "Hoje a urgência tira folga; combine com ela.", "tone": ["calma","humor"], "theme": ["pausa","trabalho"] },
+  { "text": "Pausa não é atraso; é manutenção programada.", "tone": ["calma","pragmatico"], "theme": ["pausa","autocuidado"] },
+  { "text": "O relógio pode andar, você pode deitar.", "tone": ["calma","humor"], "theme": ["tempo","pausa"] },
+  { "text": "Se o mundo gritar, abaixe o volume interno.", "tone": ["calma","poetico"], "theme": ["autocuidado","pausa"] },
+  { "text": "Um café longo cura dramas curtos.", "tone": ["calma","humor"], "theme": ["cotidiano","pausa"] },
+  { "text": "Respirar fundo é um atalho discreto para a paz.", "tone": ["calma","pragmatico"], "theme": ["autocuidado","pausa"] },
+  { "text": "Deixe uma janela aberta e as preocupações saem passeando.", "tone": ["calma","poetico"], "theme": ["pausa","curiosidade"] },
+  { "text": "Hoje vale andar devagar e chegar inteiro.", "tone": ["calma","pragmatico"], "theme": ["pausa","autocuidado"] },
+  { "text": "Sua to-do list não manda em você; negocie.", "tone": ["calma","humor"], "theme": ["trabalho","autocuidado"] },
+  { "text": "O descanso também entrega resultados.", "tone": ["calma","pragmatico"], "theme": ["pausa","trabalho"] },
+  { "text": "Feche os olhos dois minutos; a vida espera.", "tone": ["calma","poetico"], "theme": ["pausa","tempo"] },
+  { "text": "Você não precisa justificar o descanso para ninguém.", "tone": ["calma","humor"], "theme": ["autocuidado","pausa"] },
+  { "text": "Deite a preocupação no sofá; ela dorme rápido.", "tone": ["calma","humor"], "theme": ["autocuidado","pausa"] },
+  { "text": "Trabalhe só até o ponto em que o sorriso não se perde.", "tone": ["calma","pragmatico"], "theme": ["trabalho","autocuidado"] },
+  { "text": "Deixe o tempo amadurecer as respostas.", "tone": ["calma","poetico"], "theme": ["tempo","autocuidado"] },
+  { "text": "Relaxe a testa; o resto do corpo entende.", "tone": ["calma","humor"], "theme": ["autocuidado","pausa"] },
+  { "text": "Hoje a meta é voltar para casa já estando nela.", "tone": ["calma","poetico"], "theme": ["pausa","cotidiano"] },
+  { "text": "Sorria por esporte: queimam-se calorias de tensão.", "tone": ["humor","acao"], "theme": ["autocuidado","cotidiano"] },
+  { "text": "Você não está atrasado; o relógio é que é ansioso.", "tone": ["humor","calma"], "theme": ["tempo","autocuidado"] },
+  { "text": "Seu plano B está rindo do plano A desde cedo.", "tone": ["humor","acao"], "theme": ["progresso","trabalho"] },
+  { "text": "Hoje o drama vai tirar férias sem aviso.", "tone": ["humor","calma"], "theme": ["autocuidado","pausa"] },
+  { "text": "A ideia brilhante está no banho; deixe o chuveiro pensar.", "tone": ["humor","poetico"], "theme": ["criatividade","pausa"] },
+  { "text": "Seu check-list fez amizade com a lixeira. Observe.", "tone": ["humor","calma"], "theme": ["trabalho","autocuidado"] },
+  { "text": "Se errar, culpe Mercúrio. Se acertar, culpe você mesmo.", "tone": ["humor","acao"], "theme": ["sorte","trabalho"] },
+  { "text": "A sorte hoje chega disfarçada de acaso maluco.", "tone": ["humor","poetico"], "theme": ["sorte","curiosidade"] },
+  { "text": "Você é edição limitada; capriche nos extras.", "tone": ["humor","acao"], "theme": ["autocuidado","progresso"] },
+  { "text": "Responder depois é um ato de autocuidado com nome chique.", "tone": ["humor","calma"], "theme": ["pausa","trabalho"] },
+  { "text": "Coloque o perfeccionismo de castigo no canto.", "tone": ["humor","acao"], "theme": ["criatividade","progresso"] },
+  { "text": "Sua criatividade está mascando chiclete e esperando palco.", "tone": ["humor","poetico"], "theme": ["criatividade","curiosidade"] },
+  { "text": "Seja gentil: o universo é auditório e gosta de aplauso.", "tone": ["humor","poetico"], "theme": ["relacao","cotidiano"] },
+  { "text": "Leve sua mente para passear, ela também fica presa no trânsito.", "tone": ["humor","calma"], "theme": ["pausa","autocuidado"] },
+  { "text": "O azar esqueceu seu endereço; a sorte anotou.", "tone": ["humor","acao"], "theme": ["sorte","progresso"] },
+  { "text": "Sua paciência ganhou um upgrade gratuito hoje.", "tone": ["humor","calma"], "theme": ["pausa","autocuidado"] },
+  { "text": "Ideias tímidas adoram bilhetes engraçados.", "tone": ["humor","poetico"], "theme": ["criatividade","relacao"] },
+  { "text": "Você é a pessoa mais recente que conhece; trate-se bem.", "tone": ["humor","calma"], "theme": ["autocuidado","curiosidade"] },
+  { "text": "Sua lista de tarefas encolhe quando você ri dela.", "tone": ["humor","acao"], "theme": ["trabalho","autocuidado"] },
+  { "text": "Hoje a sorte usa chinelos e camiseta.", "tone": ["humor","poetico"], "theme": ["sorte","cotidiano"] },
+  { "text": "Use a ironia só para temperar, não para cozinhar.", "tone": ["humor","calma"], "theme": ["relacao","autocuidado"] },
+  { "text": "Faça as pazes com o que você adiou; ele não guarda rancor.", "tone": ["humor","acao"], "theme": ["progresso","tempo"] },
+  { "text": "Seu fôlego emocional aceita refil.", "tone": ["poetico","calma"], "theme": ["autocuidado","pausa"] },
+  { "text": "Os minutos de hoje são fios de ouro; teça com cuidado leve.", "tone": ["poetico","calma"], "theme": ["tempo","progresso"] },
+  { "text": "A intuição assobia; pare para ouvir.", "tone": ["poetico","calma"], "theme": ["curiosidade","autocuidado"] },
+  { "text": "Seu caminho tem cheiros, não só setas.", "tone": ["poetico","acao"], "theme": ["progresso","curiosidade"] },
+  { "text": "A sorte gosta de se esconder na rotina.", "tone": ["poetico","humor"], "theme": ["sorte","cotidiano"] },
+  { "text": "O mundo cabe num gole de ar consciente.", "tone": ["poetico","calma"], "theme": ["pausa","autocuidado"] },
+  { "text": "Há beleza nas migalhas que sobraram do seu esforço.", "tone": ["poetico","calma"], "theme": ["trabalho","autocuidado"] },
+  { "text": "Sua coragem se veste de cotidiano para enganar o medo.", "tone": ["poetico","acao"], "theme": ["progresso","autocuidado"] },
+  { "text": "O tempo abre janelas quando você para de bater na porta errada.", "tone": ["poetico","pragmatico"], "theme": ["tempo","progresso"] },
+  { "text": "Você é farol de bolso para dias nublados.", "tone": ["poetico","calma"], "theme": ["autocuidado","relacao"] },
+  { "text": "A resposta chegou cedo e está tomando café.", "tone": ["poetico","humor"], "theme": ["curiosidade","cotidiano"] },
+  { "text": "Caminhar devagar permite colher detalhes maduros.", "tone": ["poetico","calma"], "theme": ["tempo","curiosidade"] },
+  { "text": "Seu riso é senha mestra para salas fechadas.", "tone": ["poetico","humor"], "theme": ["relacao","sorte"] },
+  { "text": "Quando o plano falha, o improviso se sente homenageado.", "tone": ["poetico","humor"], "theme": ["criatividade","trabalho"] },
+  { "text": "Guarde um espaço para o acaso sentar à mesa.", "tone": ["poetico","calma"], "theme": ["sorte","curiosidade"] },
+  { "text": "Há férias breves dentro de uma respiração.", "tone": ["poetico","calma"], "theme": ["pausa","autocuidado"] },
+  { "text": "Seu mapa interno conhece atalhos silenciosos.", "tone": ["poetico","calma"], "theme": ["autocuidado","progresso"] },
+  { "text": "A rotina é neutra; é você quem tempera.", "tone": ["pragmatico","humor"], "theme": ["cotidiano","autocuidado"] },
+  { "text": "Escolha uma microvitória e encerre o expediente cedo.", "tone": ["pragmatico","acao"], "theme": ["trabalho","progresso"] },
+  { "text": "O não de hoje pode ser o sim de energia amanhã.", "tone": ["pragmatico","calma"], "theme": ["autocuidado","tempo"] },
+  { "text": "Responda depois, viva agora.", "tone": ["pragmatico","calma"], "theme": ["tempo","autocuidado"] },
+  { "text": "Troque pressa por precisão: rende mais paz.", "tone": ["pragmatico","calma"], "theme": ["trabalho","pausa"] },
+  { "text": "Uma boa lista tem metade de coisas que você pode ignorar.", "tone": ["pragmatico","humor"], "theme": ["trabalho","autocuidado"] },
+  { "text": "Delegar é confiar que o mundo sabe cooperar.", "tone": ["pragmatico","relacao"], "theme": ["trabalho","relacao"] },
+  { "text": "Economize energia emocional: nem todo convite merece presença.", "tone": ["pragmatico","calma"], "theme": ["autocuidado","relacao"] },
+  { "text": "Simplificar é um ato de carinho com o futuro você.", "tone": ["pragmatico","calma"], "theme": ["tempo","autocuidado"] },
+  { "text": "Cancelar um item da agenda pode ser sua grande entrega do dia.", "tone": ["pragmatico","humor"], "theme": ["pausa","trabalho"] },
+  { "text": "Planeje menos, ajuste mais.", "tone": ["pragmatico","acao"], "theme": ["progresso","trabalho"] },
+  { "text": "Seja específico: o cérebro adora metas pequenas.", "tone": ["pragmatico","acao"], "theme": ["progresso","autocuidado"] },
+  { "text": "Uma boa pergunta vale mais que dez tarefas.", "tone": ["pragmatico","curiosidade"], "theme": ["criatividade","trabalho"] },
+  { "text": "Corte o excesso: leve só o essencial para a próxima hora.", "tone": ["pragmatico","calma"], "theme": ["autocuidado","tempo"] },
+  { "text": "Diga não sem rodapé; clareza é descanso.", "tone": ["pragmatico","calma"], "theme": ["relacao","autocuidado"] },
+  { "text": "Cerque-se de coisas que não gritam.", "tone": ["pragmatico","calma"], "theme": ["pausa","autocuidado"] },
+  { "text": "Hoje vale priorizar o que cabe em uma frase curta.", "tone": ["pragmatico","humor"], "theme": ["trabalho","progresso"] },
+  { "text": "Termine algo pequeno para destrancar o grande.", "tone": ["pragmatico","acao"], "theme": ["progresso","trabalho"] },
+  { "text": "Seu foco é um presente caro; entregue com critério.", "tone": ["pragmatico","calma"], "theme": ["autocuidado","trabalho"] },
+  { "text": "Um elogio sincero rende juros invisíveis.", "tone": ["relacao","calma"], "theme": ["relacao","cotidiano"] },
+  { "text": "Compartilhar um medo diminui ele em 30%.", "tone": ["relacao","humor"], "theme": ["relacao","autocuidado"] },
+  { "text": "Hoje é bom dia para perguntar “como você está?” e ouvir de verdade.", "tone": ["relacao","calma"], "theme": ["relacao","tempo"] },
+  { "text": "Envie aquela mensagem que você ensaiou na cabeça.", "tone": ["relacao","acao"], "theme": ["relacao","progresso"] },
+  { "text": "Gente querida também precisa de intervalo: ofereça.", "tone": ["relacao","calma"], "theme": ["relacao","pausa"] },
+  { "text": "Um abraço mental conta como fisioterapia da alma.", "tone": ["relacao","poetico"], "theme": ["relacao","autocuidado"] },
+  { "text": "Conversem com humor: problemas derretem mais fácil.", "tone": ["relacao","humor"], "theme": ["relacao","trabalho"] },
+  { "text": "Repare em quem te faz rir com pouco; mantenha por perto.", "tone": ["relacao","calma"], "theme": ["relacao","cotidiano"] },
+  { "text": "Você também é rede de apoio de alguém.", "tone": ["relacao","poetico"], "theme": ["relacao","autocuidado"] },
+  { "text": "Elogie em público, corrija em silêncio.", "tone": ["relacao","pragmatico"], "theme": ["relacao","trabalho"] },
+  { "text": "Dividir a vitória torna a sobremesa maior.", "tone": ["relacao","humor"], "theme": ["relacao","trabalho"] },
+  { "text": "A escuta é um superpoder discreto.", "tone": ["relacao","calma"], "theme": ["relacao","autocuidado"] },
+  { "text": "Um “tudo bem se não der” abre espaço para sinceridade.", "tone": ["relacao","calma"], "theme": ["relacao","trabalho"] },
+  { "text": "Seja ponte, não muro.", "tone": ["relacao","poetico"], "theme": ["relacao","criatividade"] },
+  { "text": "Peça ajuda antes de virar herói cansado.", "tone": ["relacao","pragmatico"], "theme": ["relacao","autocuidado"] },
+  { "text": "Ria de si mesmo; você fica mais acessível.", "tone": ["relacao","humor"], "theme": ["relacao","autocuidado"] },
+  { "text": "Gentileza também é tecnologia.", "tone": ["relacao","humor"], "theme": ["relacao","trabalho"] },
+  { "text": "Convidar alguém para uma pausa é forma de carinho.", "tone": ["relacao","calma"], "theme": ["relacao","pausa"] },
+  { "text": "A sorte adora quem compartilha.", "tone": ["relacao","poetico"], "theme": ["sorte","relacao"] },
+  { "text": "Ouvir é uma forma de segurar a mão sem encostar.", "tone": ["relacao","poetico"], "theme": ["relacao","autocuidado"] },
+  { "text": "Hoje vale dizer obrigado mais uma vez.", "tone": ["relacao","calma"], "theme": ["relacao","cotidiano"] }
 ]

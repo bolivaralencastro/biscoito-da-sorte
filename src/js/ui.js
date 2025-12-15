@@ -93,9 +93,14 @@ async function handleCookieClick() {
     applyStateVisuals(DEFAULT_COOKIE_STATE.broken);
 
     // Reveal fortune and numbers
-    const { text, numbers } = revealFortune() || {};
+    const { text, numbers, tone, theme } = revealFortune() || {};
     if (text || numbers) {
-      updateDayData({ text: text || dayData.text, numbers: numbers || dayData.numbers });
+      updateDayData({
+        text: text || dayData.text,
+        numbers: numbers || dayData.numbers,
+        fortuneTone: tone || dayData.fortuneTone,
+        fortuneTheme: theme || dayData.fortuneTheme
+      });
     }
 
     // Show a message for broken state
@@ -319,7 +324,10 @@ function revealFortune(options = {}) {
   
   fortuneStrip.classList.remove('revealed');
   fortuneStrip.classList.remove('flipped');
-  const chosenFortune = fortuneTextOverride || getRandomFortune();
+  const fortuneSource = fortuneTextOverride ? { text: fortuneTextOverride } : getRandomFortune();
+  const chosenFortune = typeof fortuneSource === 'string' ? fortuneSource : (fortuneSource?.text || '');
+  const chosenTone = Array.isArray(fortuneSource?.tone) ? fortuneSource.tone : [];
+  const chosenTheme = Array.isArray(fortuneSource?.theme) ? fortuneSource.theme : [];
   const chosenNumbers = numbersOverride || generateLuckyNumbers();
 
   fortuneText.textContent = chosenFortune;
@@ -342,11 +350,13 @@ function revealFortune(options = {}) {
   if (!dayData.text && !dayData.numbers) {
     updateDayData({
       text: chosenFortune,
-      numbers: chosenNumbers
+      numbers: chosenNumbers,
+      fortuneTone: chosenTone,
+      fortuneTheme: chosenTheme
     });
   }
   
-  return { text: chosenFortune, numbers: chosenNumbers };
+  return { text: chosenFortune, numbers: chosenNumbers, tone: chosenTone, theme: chosenTheme };
 }
 
 // Update day data
