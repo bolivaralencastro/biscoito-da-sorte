@@ -183,6 +183,12 @@ body.app-loading .daily-notice {
     z-index: 2;
 }
 
+.cookie.cleaned {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+}
+
 .cookie.broken {
     cursor: pointer;
 }

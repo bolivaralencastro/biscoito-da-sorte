@@ -91,6 +91,7 @@ const dailyNotice = document.getElementById('dailyNotice');
 
 let broken = false;
 let crunched = false;
+let cleaned = false;
 let audioCtx = null;
 let dragging = false;
 let dragOffset = { x: 0, y: 0 };
@@ -100,7 +101,8 @@ const STORAGE_KEYS = {
   date: 'fortune:lastBreakDate',
   text: 'fortune:lastText',
   numbers: 'fortune:lastNumbers',
-  crunched: 'fortune:lastCrunched'
+  crunched: 'fortune:lastCrunched',
+  cleaned: 'fortune:lastCleaned'
 };
 const IMAGE_BASES = {
   intact: 'biscoito-inteiro',
@@ -164,12 +166,14 @@ function getStoredLock() {
   let text = null;
   let numbers = null;
   let crunchedState = false;
+  let cleanedState = false;
 
   try {
     date = localStorage.getItem(STORAGE_KEYS.date);
     text = localStorage.getItem(STORAGE_KEYS.text);
     numbers = localStorage.getItem(STORAGE_KEYS.numbers);
     crunchedState = localStorage.getItem(STORAGE_KEYS.crunched) === 'true';
+    cleanedState = localStorage.getItem(STORAGE_KEYS.cleaned) === 'true';
   } catch (error) {
     console.warn('LocalStorage indisponível, tentando cookie:', error);
   }
@@ -183,13 +187,14 @@ function getStoredLock() {
         text = parsed.text;
         numbers = parsed.numbers;
         crunchedState = Boolean(parsed.crunched);
+        cleanedState = Boolean(parsed.cleaned);
       } catch (error) {
         console.warn('Não foi possível ler o cookie de trava diária:', error);
       }
     }
   }
 
-  return { date, text, numbers, crunched: crunchedState, todayMatch: date === today };
+  return { date, text, numbers, crunched: crunchedState, cleaned: cleanedState, todayMatch: date === today };
 }
 
 function isLockedToday() {
@@ -197,19 +202,20 @@ function isLockedToday() {
   return lock.todayMatch;
 }
 
-function saveTodayFortune(text, numbers, crunchedState = false) {
+function saveTodayFortune(text, numbers, crunchedState = false, cleanedState = false) {
   const today = getTodayKey();
   try {
     localStorage.setItem(STORAGE_KEYS.date, today);
     localStorage.setItem(STORAGE_KEYS.text, text);
     localStorage.setItem(STORAGE_KEYS.numbers, numbers);
     localStorage.setItem(STORAGE_KEYS.crunched, String(crunchedState));
+    localStorage.setItem(STORAGE_KEYS.cleaned, String(cleanedState));
   } catch (error) {
     console.warn('Não foi possível salvar a trava diária no localStorage:', error);
   }
 
   try {
-    writeCookie('fortuneLock', JSON.stringify({ date: today, text, numbers, crunched: crunchedState }));
+    writeCookie('fortuneLock', JSON.stringify({ date: today, text, numbers, crunched: crunchedState, cleaned: cleanedState }));
   } catch (error) {
     console.warn('Não foi possível salvar a trava diária no cookie:', error);
   }
@@ -229,14 +235,26 @@ function restoreTodayFortune() {
   const storedNumbers = lock.numbers || '';
 
   broken = true;
-  cookieState = lock.crunched ? 'crumbs' : 'broken';
-  updateCookieImage();
-  cookieImage.alt = lock.crunched ? 'Biscoito da sorte em farelos' : 'Biscoito da sorte quebrado';
-  cookieImage.classList.add('broken');
-  if (lock.crunched) {
-    crunched = true;
-    cookieImage.classList.add('crumbled');
+  crunched = lock.crunched;
+  cleaned = lock.cleaned;
+
+  if (cleaned) {
+    cookieState = 'clean';
+    cookieImage.classList.remove('broken', 'crumbled');
+    cookieImage.classList.add('cleaned');
+    cookieImage.alt = 'Ambiente limpo, sem biscoito';
+  } else if (crunched) {
+    cookieState = 'crumbs';
+    cookieImage.alt = 'Biscoito da sorte em farelos';
+    cookieImage.classList.remove('cleaned');
+    cookieImage.classList.add('broken', 'crumbled');
+  } else {
+    cookieState = 'broken';
+    cookieImage.alt = 'Biscoito da sorte quebrado';
+    cookieImage.classList.remove('cleaned');
+    cookieImage.classList.add('broken');
   }
+  updateCookieImage();
   updateShadow();
 
   revealFortune({
@@ -245,9 +263,11 @@ function restoreTodayFortune() {
     skipAnimation: true
   });
 
-  const refreshMessage = lock.crunched
-    ? 'Só farelo por aqui. Amanhã tem biscoito novo.'
-    : 'A sorte já saiu! Aproveite a tirinha e agora é só comer o biscoito.';
+  const refreshMessage = cleaned
+    ? 'Ambiente limpo e sem biscoito. Amanhã tem outro, combinado?'
+    : crunched
+      ? 'Só farelo por aqui. Amanhã tem biscoito novo.'
+      : 'A sorte já saiu! Aproveite a tirinha e agora é só comer o biscoito.';
   showDailyLockNotice(refreshMessage);
   return true;
 }
@@ -418,6 +438,11 @@ function playChew() {
 }
 
 function breakCookie() {
+  if (cleaned) {
+    showDailyLockNotice('Ambiente limpo e sem biscoito. Amanhã tem outro, combinado?');
+    return;
+  }
+
   if (broken && !crunched) {
     playChew();
     cookieState = 'crumbs';
@@ -425,12 +450,15 @@ function breakCookie() {
     cookieImage.alt = 'Biscoito da sorte em farelos';
     cookieImage.classList.add('crumbled');
     crunched = true;
-    saveTodayFortune(fortuneText.textContent || '', luckyNumbers.textContent || '', true);
+    saveTodayFortune(fortuneText.textContent || '', luckyNumbers.textContent || '', true, false);
+    showDailyLockNotice('Sobrou só o farelo. Clique para limpar a mesa.');
     return;
   }
 
   if (broken && crunched) {
-    showDailyLockNotice('Só farelo por aqui. Amanhã tem biscoito novo.');
+    cleanAfterCrumbs();
+    saveTodayFortune(fortuneText.textContent || '', luckyNumbers.textContent || '', true, true);
+    showDailyLockNotice('Ambiente limpo! Amanhã tem biscoito novo.');
     return;
   }
 
@@ -449,14 +477,18 @@ function breakCookie() {
   updateShadow();
 
   const { text, numbers } = revealFortune();
-  saveTodayFortune(text, numbers, false);
+  saveTodayFortune(text, numbers, false, false);
   showDailyLockNotice('Biscoito servido! Amanhã tem outro esperando você.');
 }
 
 function updateShadow() {
   const shadow = document.querySelector('.cookie-shadow');
   if (shadow) {
-    if (broken) {
+    if (cleaned) {
+      shadow.style.opacity = '0';
+      shadow.style.background = 'none';
+      shadow.style.filter = 'blur(0px) contrast(1)';
+    } else if (broken) {
       shadow.classList.add('broken');
       // Sombra mais suave para biscoito quebrado
       shadow.style.background = 'radial-gradient(ellipse at center, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.04) 50%, transparent 80%)';
@@ -558,10 +590,13 @@ window.addEventListener('resize', () => {
     positionStripAboveCookie();
   }
 });
-restoreTodayFortune();
+const restored = restoreTodayFortune();
 updateShadow();
 requestAnimationFrame(() => {
   document.body.classList.remove('app-loading');
+  if (!restored) {
+    showDailyLockNotice('Toque no biscoito para revelar sua sorte.');
+  }
 });
 
 function randomizeTilt() {
@@ -616,6 +651,23 @@ function toggleFlip() {
   } else {
     fortuneInner.style.transform = flipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
   }
+}
+
+function clearLooseCrumbs() {
+  document.querySelectorAll('.crumb').forEach(crumb => crumb.remove());
+}
+
+function cleanAfterCrumbs() {
+  cleaned = true;
+  broken = true;
+  crunched = true;
+  cookieState = 'clean';
+  cookieImage.classList.remove('crumbled', 'broken');
+  cookieImage.classList.add('cleaned');
+  cookieImage.alt = 'Ambiente limpo, sem biscoito';
+  updateCookieImage();
+  clearLooseCrumbs();
+  updateShadow();
 }
 
 function spawnCrumbs() {
