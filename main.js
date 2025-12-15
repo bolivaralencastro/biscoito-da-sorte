@@ -245,7 +245,10 @@ function restoreTodayFortune() {
     skipAnimation: true
   });
 
-  showDailyLockNotice('Esse biscoito já foi saboreado hoje.\nAmanhã tem outro, combinado?');
+  const refreshMessage = lock.crunched
+    ? 'Só farelo por aqui. Amanhã tem biscoito novo.'
+    : 'A sorte já saiu! Aproveite a tirinha e agora é só comer o biscoito.';
+  showDailyLockNotice(refreshMessage);
   return true;
 }
 
