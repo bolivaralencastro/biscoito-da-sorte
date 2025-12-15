@@ -78,6 +78,7 @@ function loadFortunesFromJson() {
 }
 
 loadFortunesFromJson();
+document.body.classList.add('app-loading');
 
 const cookieImage = document.getElementById('cookieImage');
 const fortuneStrip = document.getElementById('fortuneStrip');
@@ -86,13 +87,35 @@ const luckyNumbers = document.getElementById('luckyNumbers');
 const stage = document.querySelector('.stage');
 const cookieZone = document.querySelector('.cookie-zone');
 const fortuneInner = document.querySelector('.fortune-inner');
+const dailyNotice = document.getElementById('dailyNotice');
 
 let broken = false;
+let crunched = false;
 let audioCtx = null;
 let dragging = false;
 let dragOffset = { x: 0, y: 0 };
 let moved = false;
 let startPos = { x: 0, y: 0 };
+const STORAGE_KEYS = {
+  date: 'fortune:lastBreakDate',
+  text: 'fortune:lastText',
+  numbers: 'fortune:lastNumbers',
+  crunched: 'fortune:lastCrunched'
+};
+const IMAGE_BASES = {
+  intact: 'biscoito-inteiro',
+  broken: 'biscoito-quebrado',
+  crumbs: 'biscoito-farelo'
+};
+
+let imageFormat = 'png';
+let cookieState = 'intact';
+detectWebpSupport().then(supported => {
+  if (supported) {
+    imageFormat = 'webp';
+    updateCookieImage();
+  }
+});
 
 function getCookieCenter() {
   const stageRect = stage.getBoundingClientRect();
@@ -103,6 +126,127 @@ function getCookieCenter() {
     y: cookieRect.top - stageRect.top + cookieRect.height / 2,
     stageRect
   };
+}
+
+function detectWebpSupport() {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => resolve(img.width === 1);
+    img.onerror = () => resolve(false);
+    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4ICwAAAAvAAAAAAMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAQUxQSAwAAAA0AIAnQEQAA';
+  });
+}
+
+function updateCookieImage() {
+  const base = IMAGE_BASES[cookieState] || IMAGE_BASES.intact;
+  cookieImage.src = `${base}.${imageFormat}`;
+}
+
+function getTodayKey() {
+  const now = new Date();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${now.getFullYear()}-${month}-${day}`;
+}
+
+function readCookie(name) {
+  const match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)'));
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
+function writeCookie(name, value, maxAgeSeconds = 172800) {
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAgeSeconds}; samesite=lax`;
+}
+
+function getStoredLock() {
+  const today = getTodayKey();
+  let date = null;
+  let text = null;
+  let numbers = null;
+  let crunchedState = false;
+
+  try {
+    date = localStorage.getItem(STORAGE_KEYS.date);
+    text = localStorage.getItem(STORAGE_KEYS.text);
+    numbers = localStorage.getItem(STORAGE_KEYS.numbers);
+    crunchedState = localStorage.getItem(STORAGE_KEYS.crunched) === 'true';
+  } catch (error) {
+    console.warn('LocalStorage indisponível, tentando cookie:', error);
+  }
+
+  if (!date) {
+    const cookieData = readCookie('fortuneLock');
+    if (cookieData) {
+      try {
+        const parsed = JSON.parse(cookieData);
+        date = parsed.date;
+        text = parsed.text;
+        numbers = parsed.numbers;
+        crunchedState = Boolean(parsed.crunched);
+      } catch (error) {
+        console.warn('Não foi possível ler o cookie de trava diária:', error);
+      }
+    }
+  }
+
+  return { date, text, numbers, crunched: crunchedState, todayMatch: date === today };
+}
+
+function isLockedToday() {
+  const lock = getStoredLock();
+  return lock.todayMatch;
+}
+
+function saveTodayFortune(text, numbers, crunchedState = false) {
+  const today = getTodayKey();
+  try {
+    localStorage.setItem(STORAGE_KEYS.date, today);
+    localStorage.setItem(STORAGE_KEYS.text, text);
+    localStorage.setItem(STORAGE_KEYS.numbers, numbers);
+    localStorage.setItem(STORAGE_KEYS.crunched, String(crunchedState));
+  } catch (error) {
+    console.warn('Não foi possível salvar a trava diária no localStorage:', error);
+  }
+
+  try {
+    writeCookie('fortuneLock', JSON.stringify({ date: today, text, numbers, crunched: crunchedState }));
+  } catch (error) {
+    console.warn('Não foi possível salvar a trava diária no cookie:', error);
+  }
+}
+
+function showDailyLockNotice(message) {
+  if (!dailyNotice) return;
+  dailyNotice.textContent = message;
+  dailyNotice.classList.add('visible');
+}
+
+function restoreTodayFortune() {
+  const lock = getStoredLock();
+  if (!lock.todayMatch) return false;
+
+  const storedFortune = lock.text || 'Sua sorte do dia já foi revelada.';
+  const storedNumbers = lock.numbers || '';
+
+  broken = true;
+  cookieState = lock.crunched ? 'crumbs' : 'broken';
+  updateCookieImage();
+  cookieImage.alt = lock.crunched ? 'Biscoito da sorte em farelos' : 'Biscoito da sorte quebrado';
+  cookieImage.classList.add('broken');
+  if (lock.crunched) {
+    crunched = true;
+    cookieImage.classList.add('crumbled');
+  }
+  updateShadow();
+
+  revealFortune({
+    fortuneTextOverride: storedFortune,
+    numbersOverride: storedNumbers,
+    skipAnimation: true
+  });
+
+  showDailyLockNotice('Esse biscoito já foi saboreado hoje.\nAmanhã tem outro, combinado?');
+  return true;
 }
 
 function randomFortune() {
@@ -121,11 +265,20 @@ function generateNumbers() {
     .join("  -  ");
 }
 
-function revealFortune() {
+function revealFortune(options = {}) {
+  const {
+    fortuneTextOverride,
+    numbersOverride,
+    skipAnimation = false
+  } = options;
+
   fortuneStrip.classList.remove('revealed');
   fortuneStrip.classList.remove('flipped');
-  fortuneText.textContent = randomFortune();
-  luckyNumbers.textContent = generateNumbers();
+  const chosenFortune = fortuneTextOverride || randomFortune();
+  const chosenNumbers = numbersOverride || generateNumbers();
+
+  fortuneText.textContent = chosenFortune;
+  luckyNumbers.textContent = chosenNumbers;
   positionStripAboveCookie();
   randomizeTilt();
 
@@ -136,7 +289,10 @@ function revealFortune() {
     gsap.set(fortuneStrip, { rotationY: 0, rotationX: 0, transformPerspective: 1200, transformOrigin: '50% 50%' });
   }
   fortuneStrip.classList.add('revealed');
-  animateRevealWithGsap();
+  if (!skipAnimation) {
+    animateRevealWithGsap();
+  }
+  return { text: chosenFortune, numbers: chosenNumbers };
 }
 
 function playCrack() {
@@ -205,18 +361,93 @@ function playCrack() {
   }
 }
 
-function breakCookie() {
-  if (!broken) {
-    cookieImage.src = 'biscoito-quebrado.png';
-    cookieImage.alt = 'Biscoito da sorte quebrado';
-    broken = true;
-    cookieImage.classList.add('broken');
-    playCrack();
-    spawnCrumbs();
-    updateShadow();
+function playChew() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   }
 
-  revealFortune();
+  const now = audioCtx.currentTime + 0.05;
+
+  const scheduleGrain = (durationMs, highPassFreq, gainValue, startTime) => {
+    const length = Math.max(1, Math.floor(audioCtx.sampleRate * (durationMs / 1000)));
+    const buffer = audioCtx.createBuffer(1, length, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+
+    for (let i = 0; i < length; i++) {
+      const t = i / length;
+      const envelope = Math.exp(-t * 15); // decaimento rápido
+      const noise = (Math.random() * 2 - 1) * envelope;
+      data[i] = noise;
+    }
+
+    const src = audioCtx.createBufferSource();
+    src.buffer = buffer;
+
+    const highPass = audioCtx.createBiquadFilter();
+    highPass.type = 'highpass';
+    highPass.frequency.value = highPassFreq;
+    highPass.Q.value = 0.9;
+
+    const gain = audioCtx.createGain();
+    gain.gain.value = gainValue;
+
+    src.connect(highPass).connect(gain).connect(audioCtx.destination);
+    src.start(startTime);
+  };
+
+  const addBite = (startOffsetSec, intensity = 1, grainCount = 50) => {
+    const baseTime = now + startOffsetSec;
+    // Estalo principal
+    scheduleGrain(80, 1200, 0.8 * intensity, baseTime);
+    // Farelos logo depois
+    for (let g = 0; g < grainCount; g++) {
+      const delayMs = Math.random() * 150;
+      const durMs = 5 + Math.random() * 25;
+      const freq = 2000 + Math.random() * 4000;
+      const vol = (0.05 + Math.random() * 0.35) * intensity;
+      scheduleGrain(durMs, freq, vol, baseTime + delayMs / 1000);
+    }
+  };
+
+  addBite(0.2, 1.0, 80); // mordida grande
+  addBite(0.6, 0.5, 30); // reajuste rápido
+  addBite(1.0, 0.3, 20); // trituração final
+}
+
+function breakCookie() {
+  if (broken && !crunched) {
+    playChew();
+    cookieState = 'crumbs';
+    updateCookieImage();
+    cookieImage.alt = 'Biscoito da sorte em farelos';
+    cookieImage.classList.add('crumbled');
+    crunched = true;
+    saveTodayFortune(fortuneText.textContent || '', luckyNumbers.textContent || '', true);
+    return;
+  }
+
+  if (broken && crunched) {
+    showDailyLockNotice('Só farelo por aqui. Amanhã tem biscoito novo.');
+    return;
+  }
+
+  if (isLockedToday()) {
+    showDailyLockNotice('Esse biscoito já foi saboreado hoje.\nAmanhã tem outro, combinado?');
+    return;
+  }
+
+  cookieState = 'broken';
+  updateCookieImage();
+  cookieImage.alt = 'Biscoito da sorte quebrado';
+  broken = true;
+  cookieImage.classList.add('broken');
+  playCrack();
+  spawnCrumbs();
+  updateShadow();
+
+  const { text, numbers } = revealFortune();
+  saveTodayFortune(text, numbers, false);
+  showDailyLockNotice('Biscoito servido! Amanhã tem outro esperando você.');
 }
 
 function updateShadow() {
@@ -324,7 +555,11 @@ window.addEventListener('resize', () => {
     positionStripAboveCookie();
   }
 });
+restoreTodayFortune();
 updateShadow();
+requestAnimationFrame(() => {
+  document.body.classList.remove('app-loading');
+});
 
 function randomizeTilt() {
   const tiltMagnitude = 4 + Math.random() * 9; // mínimo 4deg para ser perceptível

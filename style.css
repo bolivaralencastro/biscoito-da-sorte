@@ -24,6 +24,11 @@ body {
     position: relative;
 }
 
+body.app-loading #cookieImage,
+body.app-loading .daily-notice {
+    visibility: hidden;
+}
+
 .footer {
     position: fixed;
     bottom: 20px;
@@ -50,6 +55,29 @@ body {
     font-weight: 400;
     letter-spacing: 0.01em;
     font-size: 0.92rem;
+}
+
+.daily-notice {
+    position: fixed;
+    top: 52px;
+    left: 50%;
+    transform: translate(-50%, -8px);
+    color: #b5b5b5;
+    padding: 6px 10px;
+    font-size: 0.7rem;
+    letter-spacing: 0.01em;
+    white-space: pre-line;
+    text-align: center;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
+    z-index: 140;
+}
+
+.daily-notice.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
 }
 
 .footer-link {
@@ -154,8 +182,7 @@ body {
 }
 
 .cookie.broken {
-    cursor: default;
-    pointer-events: none;
+    cursor: pointer;
 }
 
 .fortune-strip {

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- OpenGraph / Meta Tags para compartilhamento social -->
-  <meta property="og:title" content="Biscoito da Sorte - Interativo e Divertido">
-  <meta property="og:description" content="Quebre o biscoito virtual, leia sua sorte e descubra seus números da sorte! Um biscoito da sorte interativo que funciona diretamente no navegador.">
+  <meta property="og:title" content="Biscoito da Sorte">
+  <meta property="og:description" content="Quebre o biscoito virtual, dê risada da previsão e leve a sério o convite para guardar seus números da sorte.">
   <meta property="og:url" content="https://bolivaralencastro.github.io/sorte-do-dia/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://bolivaralencastro.github.io/sorte-do-dia/og-image.png">
@@ -17,16 +17,22 @@
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Biscoito da Sorte - Interativo e Divertido">
-  <meta name="twitter:description" content="Quebre o biscoito virtual, leia sua sorte e descubra seus números da sorte! Um biscoito da sorte interativo que funciona diretamente no navegador.">
+  <meta name="twitter:title" content="Biscoito da Sorte">
+  <meta name="twitter:description" content="Quebre o biscoito virtual, dê risada da previsão e leve a sério o convite para guardar seus números da sorte.">
   <meta name="twitter:image" content="https://bolivaralencastro.github.io/sorte-do-dia/og-image.png">
   <meta name="twitter:creator" content="@bolivaralencastro">
   
   <!-- Meta tags adicionais -->
-  <meta name="description" content="Quebre o biscoito virtual, leia sua sorte e descubra seus números da sorte! Um biscoito da sorte interativo que funciona diretamente no navegador.">
+  <meta name="description" content="Quebre o biscoito virtual, dê risada da previsão e leve a sério o convite para guardar seus números da sorte.">
   <meta name="author" content="Bolívar Alencastro">
   <meta name="keywords" content="biscoito da sorte, sorte do dia, fortuna, números da sorte, interativo, javascript">
   <meta name="theme-color" content="#ffffff">
+  <style>
+    body.app-loading #cookieImage,
+    body.app-loading .daily-notice {
+      visibility: hidden !important;
+    }
+  </style>
   
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -39,10 +45,11 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 </head>
-<body>
+<body class="app-loading">
   <header class="header">
     <span class="header-badge">Biscoito da Sorte</span>
   </header>
+  <div id="dailyNotice" class="daily-notice" aria-live="polite"></div>
   <main class="stage">
     <div class="vignette-overlay"></div>
     <div class="cookie-zone">
