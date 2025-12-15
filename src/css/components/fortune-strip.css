@@ -16,6 +16,7 @@
     transform-style: preserve-3d;
     cursor: grab;
     user-select: none;
+    touch-action: none; /* permite arrastar no mobile sem conflito com scroll */
     z-index: 6; /* fica acima do biscoito e da sombra */
 }
 

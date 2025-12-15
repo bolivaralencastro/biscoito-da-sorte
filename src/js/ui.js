@@ -168,6 +168,7 @@ function setupFortuneStripDrag() {
 
   const onPointerMove = (event) => {
     if (!dragging) return;
+    event.preventDefault();
     const deltaX = Math.abs(event.clientX - startPos.x);
     const deltaY = Math.abs(event.clientY - startPos.y);
     if (deltaX > 2 || deltaY > 2) {
