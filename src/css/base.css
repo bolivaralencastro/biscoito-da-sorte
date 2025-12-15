@@ -1,0 +1,30 @@
+:root {
+    --text: #1a1a1a;
+    --muted: #7a7a7a;
+    --paper: #ffffff;
+    --paper-shadow: rgba(0, 0, 0, 0.07);
+    --outline: #e5e5e5;
+    --accent: #f0a95a;
+    --numbers: #d26464;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #fff;
+    color: var(--text);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    display: grid;
+    place-items: center;
+    user-select: none;
+    position: relative;
+}
+
+body.app-loading #cookieImage,
+body.app-loading .daily-notice {
+    visibility: hidden;
+}

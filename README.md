@@ -8,17 +8,19 @@ Um biscoito da sorte interativo: toque para quebrar, leia a tirinha, vire para v
 - Clique na tirinha para virar entre frase e números; arraste para mover.
 
 ## O que há aqui
-- HTML/CSS/JS vanilla, sem dependências.
-- Frases locais em `main.js` e `sortes_do_dia.json`; novas mensagens são mescladas automaticamente.
+- HTML/CSS/JS vanilla com módulos ES6, sem dependências.
+- Frases locais em `src/js/config.js` e `data/fortunes.json`; novas mensagens são mescladas automaticamente.
+- Mensagens de estado organizadas em `data/messages/` por estado (intact, broken, crumbs, clean).
 - Números da sorte gerados aleatoriamente de 01 a 60.
-- Assets: `biscoito-inteiro.png`, `biscoito-quebrado.png` e estilos em `style.css`.
+- Assets: `assets/images/biscoito-inteiro.png`, `assets/images/biscoito-quebrado.png` e estilos em `src/css/`.
 - **Vinheta suave**: Efeito de foco sutil com gradiente radial quase branco.
 - **OpenGraph**: Meta tags para compartilhamento rico em redes sociais.
 - **Favicon**: Ícone de biscoito da sorte em SVG.
 
 ## Personalização rápida
-- Acrescente frases em `sortes_do_dia.json` (campo `text`) ou no array `baseFortunes` em `main.js`.
-- Ajuste cores e sombras em `style.css` (variáveis `:root`).
+- Acrescente frases em `data/fortunes.json` (campo `text`) ou no array `BASE_FORTUNES` em `src/js/config.js`.
+- Adicione mensagens específicas por estado em `data/messages/{estado}.json`.
+- Ajuste cores e sombras em `src/css/base.css` (variáveis `:root`).
 - Troque as imagens do biscoito mantendo o mesmo nome de arquivo para reaproveitar o código.
 - Personalize as meta tags OpenGraph em `index.html` para SEO e compartilhamento social.
 
@@ -72,17 +74,43 @@ Se preferir outras ferramentas de analytics, você pode substituir o Clarity por
 ## Estrutura de arquivos
 ```
 biscoito-da-sorte/
-├── index.html          # Página principal com OpenGraph e Clarity
-├── main.js             # Lógica interativa (317 linhas)
-├── style.css           # Estilos com vinheta suave (196 linhas)
-├── biscoito-inteiro.png # Imagem do biscoito intacto (260x260px)
-├── biscoito-quebrado.png # Imagem do biscoito quebrado (260x260px)
-├── sortes_do_dia.json  # Frases adicionais (100+ entradas)
-└── README.md           # Documentação completa
+├── index.html                    # Página principal com OpenGraph e Clarity
+├── src/
+│   ├── js/
+│   │   ├── main.js              # Ponto de entrada principal
+│   │   ├── config.js            # Configurações e constantes
+│   │   ├── ui.js                # Lógica de interface do usuário
+│   │   ├── audio.js             # Efeitos sonoros
+│   │   ├── animation.js         # Animações
+│   │   ├── storage.js           # Persistência de dados
+│   │   └── messages.js          # Gerenciamento de mensagens por estado
+│   └── css/
+│       ├── base.css             # Variáveis CSS e estilos base
+│       └── components/
+│           ├── layout.css       # Layout geral (header, footer, stage)
+│           ├── cookie.css       # Estilos do biscoito
+│           ├── fortune-strip.css # Estilos da tirinha de sorte
+│           └── animations.css   # Animações (migalhas, etc.)
+├── assets/
+│   ├── images/                  # Imagens do biscoito, og-image, etc.
+│   └── icons/                   # Favicon e ícones
+├── data/
+│   ├── fortunes.json            # Frases de sorte (padronizado, sem duplicatas)
+│   └── messages/                # Mensagens por estado do biscoito
+│       ├── intact.json          # Mensagens para estado intacto
+│       ├── broken.json          # Mensagens para estado quebrado
+│       ├── crumbs.json          # Mensagens para estado em farelo
+│       └── clean.json           # Mensagens para estado limpo
+├── docs/                        # Documentação adicional
+│   ├── GITHUB_PAGES_GUIDE.md
+│   ├── SETUP_GUIDE.md
+│   └── setup-github.sh
+├── .gitignore                   # Arquivos e pastas a serem ignorados pelo Git
+└── README.md                    # Documentação completa
 ```
 
 ## Tecnologias utilizadas
-- **Frontend**: HTML5, CSS3, JavaScript ES6+
+- **Frontend**: HTML5, CSS3, JavaScript ES6+ (módulos)
 - **Analytics**: Microsoft Clarity (opcional)
 - **Design**: Vinheta com gradiente radial, animações CSS
 - **Áudio**: Web Audio API para efeitos sonoros
@@ -91,10 +119,10 @@ biscoito-da-sorte/
 
 ## Recursos avançados
 - **Interatividade**: Pointer Events para arrastar e soltar
-- **Animações**: CSS Keyframes para migalhas caindo
+- **Animações**: CSS Keyframes e GSAP para migalhas caindo e transições suaves
 - **Responsivo**: Design adaptável para mobile e desktop
 - **Acessibilidade**: Atributos ARIA e semântica HTML
-- **Performance**: Carregamento assíncrono de scripts
+- **Performance**: Carregamento assíncrono de scripts e modularização
 - **Hospedagem gratuita**: Configurado para GitHub Pages
 
 ## 🚀 Hospedagem com GitHub Pages

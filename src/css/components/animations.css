@@ -1,0 +1,25 @@
+.crumb {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #d6a15e;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    opacity: 0.95;
+    pointer-events: none;
+    animation: crumb-fall 0.9s ease-out forwards;
+    transform: translate(0, 0) scale(1);
+    z-index: 4;
+}
+
+@keyframes crumb-fall {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.95;
+    }
+    100% {
+        transform: translate(var(--tx, 0px), var(--ty, 80px)) scale(0.6);
+        opacity: 0;
+        filter: blur(0.5px);
+    }
+}

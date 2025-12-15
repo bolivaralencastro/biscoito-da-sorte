@@ -1,0 +1,104 @@
+.fortune-strip {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    --flip-shade: 0;
+    transform: translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(0.96) skewX(var(--skew, -0.6deg));
+    background: linear-gradient(120deg, rgba(0,0,0,0.02), transparent 26%, rgba(0,0,0,0.015) 46%, transparent 70%), var(--paper);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.16);
+    padding: 10px 22px;
+    width: clamp(240px, 88vw, 340px);
+    min-height: 62px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 280ms ease, transform 280ms ease;
+    perspective: 900px;
+    transform-style: preserve-3d;
+    cursor: grab;
+    user-select: none;
+    z-index: 6; /* fica acima do biscoito e da sombra */
+}
+
+.fortune-strip.revealed {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(1) skewX(var(--skew, -0.6deg));
+    pointer-events: auto;
+}
+
+.fortune-strip.flipped {
+    transform: translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(1) skewX(var(--skew, -0.6deg)) rotateY(180deg);
+}
+
+.fortune-strip:active {
+    cursor: grabbing;
+}
+
+.fortune-strip::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    background: radial-gradient(ellipse at 30% 30%, rgba(0,0,0,0.05), transparent 50%),
+        radial-gradient(ellipse at 70% 60%, rgba(0,0,0,0.04), transparent 52%);
+    opacity: 0.2;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+.fortune-strip::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.12) 100%);
+    opacity: var(--flip-shade, 0);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    transition: opacity 220ms ease;
+}
+
+#fortuneText {
+    display: block;
+    width: 100%;
+    max-width: none;
+    font-size: 0.9rem;
+    line-height: 1.25;
+    text-align: center;
+    text-wrap: balance;
+    word-break: break-word;
+    max-width: 280px;
+}
+
+#luckyNumbers {
+    font-size: 0.9rem;
+    line-height: 1.25;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: var(--numbers);
+}
+
+.fortune-inner {
+    position: relative;
+    width: 100%;
+    min-height: 54px;
+    transform-style: preserve-3d;
+    transition: none;
+}
+
+.face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    backface-visibility: hidden;
+}
+
+.face.back {
+    transform: rotateY(180deg);
+}
+
+@media (max-width: 520px) {
+    .fortune-strip {
+        width: min(92vw, 320px);
+    }
+}

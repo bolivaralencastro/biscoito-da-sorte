@@ -1,0 +1,25 @@
+.cookie {
+    width: 260px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 200ms ease;
+    user-select: none;
+    position: relative;
+    z-index: 2;
+}
+
+.cookie.cleaned {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+}
+
+.cookie.broken {
+    cursor: pointer;
+}
+
+@media (max-width: 520px) {
+    .cookie {
+        width: 210px;
+    }
+}
