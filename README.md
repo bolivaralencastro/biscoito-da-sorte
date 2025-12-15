@@ -12,7 +12,7 @@ Um biscoito da sorte interativo: toque para quebrar, leia a tirinha, vire para v
 - Frases locais em `src/js/config.js` e `data/fortunes.json`; novas mensagens são mescladas automaticamente.
 - Mensagens de estado organizadas em `data/messages/` por estado (intact, broken, crumbs, clean).
 - Números da sorte gerados aleatoriamente de 01 a 60.
-- Assets: `assets/images/biscoito-inteiro.png`, `assets/images/biscoito-quebrado.png` e estilos em `src/css/`.
+- Assets: imagens em `assets/images/` (ex.: `assets/images/biscoito-inteiro/biscoito-inteiro.png` e `assets/images/biscoito-quebrado/biscoito-quebrado.png`) e estilos em `src/css/`.
 - **Vinheta suave**: Efeito de foco sutil com gradiente radial quase branco.
 - **OpenGraph**: Meta tags para compartilhamento rico em redes sociais.
 - **Favicon**: Ícone de biscoito da sorte em SVG.

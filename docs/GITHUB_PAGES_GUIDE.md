@@ -85,7 +85,7 @@ fetch('sortes_do_dia.json')
 
 ```html
 <!-- Isso também funciona
-<img src="biscoito-inteiro.png">
+<img src="assets/images/biscoito-inteiro/biscoito-inteiro.png">
 ```
 
 ### Meta Tags Atualizadas
@@ -94,7 +94,7 @@ As URLs do OpenGraph já estão configuradas para GitHub Pages:
 
 ```html
 <meta property="og:url" content="https://bolivaralencastro.github.io/biscoito-da-sorte/">
-<meta property="og:image" content="https://bolivaralencastro.github.io/biscoito-da-sorte/biscoito-inteiro.png">
+<meta property="og:image" content="https://bolivaralencastro.github.io/biscoito-da-sorte/assets/images/biscoito-inteiro/biscoito-inteiro.png">
 ```
 
 ## 📱 Testando o Projeto
