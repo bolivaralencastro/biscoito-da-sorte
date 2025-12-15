@@ -208,6 +208,8 @@ function setupFortuneStripDrag() {
       skipClick = true;
       setTimeout(() => { skipClick = false; }, 0);
     }
+
+    saveFortunePosition();
   };
 
   fortuneStrip.addEventListener('pointerdown', onPointerDown);
@@ -341,6 +343,7 @@ function syncFortuneStripFromData() {
     numbersOverride: storedNumbers,
     skipAnimation: true
   });
+  applyStoredFortunePosition();
 }
 
 // Reveal fortune with optional overrides
@@ -376,6 +379,7 @@ function revealFortune(options = {}) {
   if (!skipAnimation) {
     animateRevealWithGsap(fortuneStrip);
   }
+  applyStoredFortunePosition();
   
   // Update day data if not already set
   if (!dayData.text && !dayData.numbers) {
@@ -394,6 +398,47 @@ function revealFortune(options = {}) {
 function updateDayData(partial) {
   dayData = { ...dayData, ...partial };
   persistDayData(dayData);
+}
+
+// Persist current fortune strip position in day data
+function saveFortunePosition() {
+  if (!stage || !fortuneStrip || !dayData) return;
+  const stageRect = stage.getBoundingClientRect();
+  if (!stageRect.width || !stageRect.height) return;
+  const left = parseFloat(fortuneStrip.style.left || '0');
+  const top = parseFloat(fortuneStrip.style.top || '0');
+  const xRatio = Math.min(Math.max(left / stageRect.width, 0), 1);
+  const yRatio = Math.min(Math.max(top / stageRect.height, 0), 1);
+  updateDayData({ fortunePosition: { xRatio, yRatio } });
+}
+
+// Apply saved position if available
+function applyStoredFortunePosition() {
+  if (!dayData?.fortunePosition || !stage || !fortuneStrip) return;
+  const stageRect = stage.getBoundingClientRect();
+  const stripRect = fortuneStrip.getBoundingClientRect();
+  if (!stageRect.width || !stageRect.height || !stripRect.width || !stripRect.height) return;
+
+  const margin = 12;
+  const desiredCenterLeft = dayData.fortunePosition.xRatio * stageRect.width;
+  const desiredCenterTop = dayData.fortunePosition.yRatio * stageRect.height;
+
+  const desiredTopLeftX = desiredCenterLeft - stripRect.width / 2;
+  const desiredTopLeftY = desiredCenterTop - stripRect.height / 2;
+
+  const minX = margin;
+  const maxX = stageRect.width - stripRect.width - margin;
+  const minY = margin;
+  const maxY = stageRect.height - stripRect.height - margin;
+
+  const clampedLeft = Math.min(Math.max(desiredTopLeftX, minX), maxX);
+  const clampedTop = Math.min(Math.max(desiredTopLeftY, minY), maxY);
+
+  const centeredLeft = clampedLeft + stripRect.width / 2;
+  const centeredTop = clampedTop + stripRect.height / 2;
+
+  fortuneStrip.style.left = `${centeredLeft}px`;
+  fortuneStrip.style.top = `${centeredTop}px`;
 }
 
 // Ensure messages exist for state
