@@ -2,31 +2,52 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   
-  <!-- OpenGraph / Meta Tags para compartilhamento social -->
+  <!-- SEO base -->
+  <title>Biscoito da Sorte</title>
+  <meta name="description" content="Quebre o biscoito virtual, dê risada da previsão e leve a sério o convite para guardar seus números da sorte.">
+  <meta name="keywords" content="biscoito da sorte, sorte do dia, fortuna, números da sorte, interativo, javascript">
+  <meta name="author" content="Bolívar Alencastro">
+  <link rel="canonical" href="https://bolivaralencastro.github.io/biscoito-da-sorte/">
+
+  <!-- LinkedIn first pick -->
+  <meta name="image" property="og:image" content="https://bolivaralencastro.github.io/biscoito-da-sorte/og-image.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bolivaralencastro.github.io/biscoito-da-sorte/">
   <meta property="og:title" content="Biscoito da Sorte">
   <meta property="og:description" content="Quebre o biscoito virtual, dê risada da previsão e leve a sério o convite para guardar seus números da sorte.">
-  <meta property="og:url" content="https://bolivaralencastro.github.io/sorte-do-dia/">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://bolivaralencastro.github.io/sorte-do-dia/og-image.png">
+
+  <!-- Primary OG image (WEBP + PNG fallback) -->
+  <meta property="og:image" content="https://bolivaralencastro.github.io/biscoito-da-sorte/og-image.webp">
+  <meta property="og:image:type" content="image/webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Tirinha do biscoito da sorte com números e frase do dia">
+  <meta property="og:image" content="https://bolivaralencastro.github.io/biscoito-da-sorte/og-image.png">
+  <meta property="og:image:type" content="image/png">
+
   <meta property="og:locale" content="pt_BR">
-  
-  <!-- Twitter Card -->
+  <meta property="og:site_name" content="Biscoito da Sorte">
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://bolivaralencastro.github.io/biscoito-da-sorte/">
   <meta name="twitter:title" content="Biscoito da Sorte">
   <meta name="twitter:description" content="Quebre o biscoito virtual, dê risada da previsão e leve a sério o convite para guardar seus números da sorte.">
-  <meta name="twitter:image" content="https://bolivaralencastro.github.io/sorte-do-dia/og-image.png">
+  <meta name="twitter:image" content="https://bolivaralencastro.github.io/biscoito-da-sorte/og-image.webp">
+  <meta name="twitter:image:alt" content="Tirinha do biscoito da sorte com números e frase do dia">
   <meta name="twitter:creator" content="@bolivaralencastro">
   
-  <!-- Meta tags adicionais -->
-  <meta name="description" content="Quebre o biscoito virtual, dê risada da previsão e leve a sério o convite para guardar seus números da sorte.">
-  <meta name="author" content="Bolívar Alencastro">
-  <meta name="keywords" content="biscoito da sorte, sorte do dia, fortuna, números da sorte, interativo, javascript">
+  <!-- PWA / mobile -->
   <meta name="theme-color" content="#ffffff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Biscoito da Sorte">
+  <meta name="format-detection" content="telephone=no">
   <style>
     body.app-loading #cookieImage,
     body.app-loading .daily-notice {
@@ -41,7 +62,6 @@
   <link rel="manifest" href="favicon/site.webmanifest">
   <link rel="shortcut icon" href="favicon/favicon.ico">
   
-  <title>Biscoito da Sorte</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 </head>
