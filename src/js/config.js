@@ -5,9 +5,9 @@ export const STORAGE_KEYS = {
 };
 
 export const IMAGE_BASES = {
-  intact: 'assets/images/biscoito-inteiro',
-  broken: 'assets/images/biscoito-quebrado',
-  crumbs: 'assets/images/biscoito-farelo'
+  intact: 'assets/images/biscoito-inteiro/biscoito-inteiro',
+  broken: 'assets/images/biscoito-quebrado/biscoito-quebrado',
+  crumbs: 'assets/images/biscoito-farelo/biscoito-farelo'
 };
 
 export const EMPTY_DATA_URI = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';

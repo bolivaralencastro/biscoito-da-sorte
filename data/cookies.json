@@ -1,0 +1,42 @@
+[
+  {
+    "id": "classic",
+    "label": "Clássico",
+    "formats": ["png", "webp"],
+    "states": {
+      "intact": "assets/images/biscoito-inteiro/biscoito-inteiro",
+      "broken": "assets/images/biscoito-quebrado/biscoito-quebrado",
+      "crumbs": "assets/images/biscoito-farelo/biscoito-farelo"
+    }
+  },
+  {
+    "id": "golden-1",
+    "label": "Clássico Dourado 1",
+    "formats": ["png", "webp"],
+    "states": {
+      "intact": "assets/images/biscoito-inteiro/biscoito-inteiro-1",
+      "broken": "assets/images/biscoito-quebrado/biscoito-quebrado-1",
+      "crumbs": "assets/images/biscoito-farelo/biscoito-farelo"
+    }
+  },
+  {
+    "id": "golden-2",
+    "label": "Clássico Dourado 2",
+    "formats": ["png", "webp"],
+    "states": {
+      "intact": "assets/images/biscoito-inteiro/biscoito-inteiro-2",
+      "broken": "assets/images/biscoito-quebrado/biscoito-quebrado-2",
+      "crumbs": "assets/images/biscoito-farelo/biscoito-farelo"
+    }
+  },
+  {
+    "id": "golden-3",
+    "label": "Clássico Dourado 3",
+    "formats": ["png", "webp"],
+    "states": {
+      "intact": "assets/images/biscoito-inteiro/biscoito-inteiro-3",
+      "broken": "assets/images/biscoito-quebrado/biscoito-quebrado-3",
+      "crumbs": "assets/images/biscoito-farelo/biscoito-farelo"
+    }
+  }
+]

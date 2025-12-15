@@ -2,15 +2,16 @@
 
 import { initUI } from './ui.js';
 import { loadFortunesFromJson } from './fortunes.js';
+import { loadCookieVariantsFromJson } from './cookies.js';
 
-// Load fortunes from JSON on startup
-loadFortunesFromJson()
+// Load fortunes and cookie variants from JSON on startup
+Promise.all([loadFortunesFromJson(), loadCookieVariantsFromJson()])
   .then(async () => {
-    // Initialize the UI after fortunes are loaded
+    // Initialize the UI after data is loaded
     await initUI();
   })
   .catch(async error => {
-    console.error('Erro ao carregar as sortes:', error);
-    // Even if fortunes fail to load, initialize the UI with default fortunes
+    console.error('Erro ao carregar dados iniciais:', error);
+    // Even if data fails to load, initialize the UI with defaults
     await initUI();
   });

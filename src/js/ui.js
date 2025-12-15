@@ -5,12 +5,15 @@ import { createCrumbsAnimation, animateRevealWithGsap, positionStripAboveCookie,
 import { getRandomFortune, generateLuckyNumbers } from './fortunes.js';
 import { getRandomMessageForState, getMessagesForState } from './messages.js';
 import { loadDayData, persistDayData, createDefaultDayData } from './storage.js';
+import { getCookieVariantById, getRandomCookieVariant } from './cookies.js';
 import { IMAGE_BASES, EMPTY_DATA_URI, DEFAULT_COOKIE_STATE } from './config.js';
 
 // Global variables that were in the original main.js
 let dayData = null;
 let imageFormat = 'png';
 let cookieState = 'intact';
+let webpSupported = false;
+let cookieVariant = null;
 let broken = false;
 let crunched = false;
 let cleaned = false;
@@ -43,12 +46,14 @@ export async function initUI() {
   // Load day data
   dayData = await loadDayData();
 
+  // Choose and persist today's cookie variant
+  cookieVariant = ensureCookieVariant();
+
   // Detect WebP support
   detectWebpSupport().then(supported => {
-    if (supported) {
-      imageFormat = 'webp';
-      updateCookieImage();
-    }
+    webpSupported = supported;
+    imageFormat = selectBestImageFormat();
+    updateCookieImage();
   });
 
   // Apply initial state visuals
@@ -82,6 +87,14 @@ function setupEventListeners() {
 // Handle cookie click
 async function handleCookieClick() {
   const previousState = dayData.state;
+
+  // Add an additional check to prevent reverting to intact state during the same day
+  // if the user has already progressed beyond the intact state
+  if (dayData.crunched && previousState === 'intact') {
+    // The user has already crunched the cookie today - show a message
+    showDailyLockNotice("Você já consumiu seu biscoito da sorte de hoje!");
+    return;
+  }
 
   if (previousState === 'intact') {
     // Break the cookie
@@ -245,8 +258,17 @@ function updateCookieImage() {
     return;
   }
   
-  const base = IMAGE_BASES[cookieState] || IMAGE_BASES.intact;
-  cookieImage.src = `${base}.${imageFormat}`;
+  const base = (cookieVariant?.states && cookieVariant.states[cookieState]) || IMAGE_BASES[cookieState] || IMAGE_BASES.intact;
+  const format = selectBestImageFormat();
+  imageFormat = format;
+  cookieImage.src = `${base}.${format}`;
+}
+
+function selectBestImageFormat() {
+  const formats = cookieVariant?.formats || ['png'];
+  if (webpSupported && formats.includes('webp')) return 'webp';
+  if (formats.includes('png')) return 'png';
+  return formats[0] || 'png';
 }
 
 // Get cookie center position
@@ -398,6 +420,18 @@ function revealFortune(options = {}) {
 function updateDayData(partial) {
   dayData = { ...dayData, ...partial };
   persistDayData(dayData);
+}
+
+// Ensure a cookie variant is selected for the day
+function ensureCookieVariant() {
+  const selected = dayData?.cookieVariantId ? getCookieVariantById(dayData.cookieVariantId) : null;
+  const chosen = selected || getRandomCookieVariant();
+  if (!dayData || dayData.cookieVariantId !== chosen.id) {
+    updateDayData({ cookieVariantId: chosen.id });
+  }
+  cookieVariant = chosen;
+  imageFormat = selectBestImageFormat();
+  return chosen;
 }
 
 // Persist current fortune strip position in day data
