@@ -138,6 +138,9 @@ async function handleCookieClick() {
 function handleFortuneStripClick() {
   if (fortuneStrip && dayData.state !== 'intact') {
     fortuneStrip.classList.toggle('flipped');
+    if (fortuneInner) {
+      fortuneInner.style.transform = fortuneStrip.classList.contains('flipped') ? 'rotateY(180deg)' : 'rotateY(0deg)';
+    }
   }
 }
 
