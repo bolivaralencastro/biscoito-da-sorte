@@ -59,6 +59,225 @@ const baseFortunes = [
   "O único modo de fazer um excelente trabalho é amar o que você faz."
 ];
 
+const STATE_MESSAGES = {
+  intact: {
+    initial: [
+      "Hoje tem mistério embrulhado em massa doce.",
+      "O silêncio do biscoito parece saber mais que eu.",
+      "Ele posa quieto, mas olha como se piscasse.",
+      "A casca está rindo por dentro.",
+      "Tem cheiro de segredo fresco.",
+      "Parece parado, mas já faz planos.",
+      "O croc está só esperando um pretexto.",
+      "Ele finge ser só um biscoito. Tá bom.",
+      "Olhos imaginários brilham nessa casquinha.",
+      "Um sorriso mora entre essas dobras.",
+      "A curiosidade cabe na palma da mão.",
+      "Essa tranquilidade está armando algo.",
+      "A surpresa cochila aqui dentro.",
+      "O biscoito respira fundo, sem pressa.",
+      "Parece uma lua de açúcar escondendo marés.",
+      "O ar está meio elétrico perto dele.",
+      "Ele é pequeno, mas anda cheio de assunto.",
+      "Um enigma crocante repousa aqui.",
+      "O acaso se encostou na mesa.",
+      "Tem sorte perfumada dentro desse silêncio.",
+      "O biscoito tá posando para a foto que ninguém tirou.",
+      "A calma dele é convite disfarçado.",
+      "Parece que a casca sabe meu nome.",
+      "O clima está com gosto de estrear alguma coisa."
+    ],
+    refresh: [
+      "Ele continua ali, tranquilo, como quem sabe esperar.",
+      "Nada mudou: o biscoito segue fazendo charme.",
+      "A casca ainda guarda o mesmo riso contido.",
+      "O mistério descansou, mas não esqueceu de você.",
+      "O silêncio voltou a se ajeitar na mesa.",
+      "O biscoito permanece em pose de estátua engraçada.",
+      "Seguimos na mesma página crocante.",
+      "O segredo ainda está morando na casquinha.",
+      "A calma permanece perfumada de curiosidade.",
+      "O enigma só esticou as pernas.",
+      "O biscoito ainda acha graça sem dizer nada.",
+      "De novo ele, paciente, segurando o clima.",
+      "O ar segue elétrico ao redor dele.",
+      "O acaso continua encostado, bocejando.",
+      "A pequena lua açucarada não saiu de órbita.",
+      "O riso interno ficou de prontidão.",
+      "A casca ainda cochicha sem som.",
+      "O convite silencioso segue na mesa.",
+      "A mesma calma, com gosto de espera boa.",
+      "O segredo não se mudou; só reorganizou as gavetas.",
+      "O biscoito ainda posa como obra em progresso.",
+      "A curiosidade repousa, mas não dorme.",
+      "O mesmo clima de estreia ficou de guarda.",
+      "O biscoito permanece de olhos fechados, sonhando com você."
+    ]
+  },
+  broken: {
+    initial: [
+      "O croc abriu passagem para a sorte.",
+      "A casca riu alto: olha quem apareceu.",
+      "Metade biscoito, metade revelação.",
+      "A rachadura virou clarabóia.",
+      "O papelzinho tomou ar e se esticou.",
+      "Estilhaços de boa notícia voaram.",
+      "A surpresa pulou da casca como quem chega atrasada.",
+      "O barulho ainda ecoa na mesa.",
+      "O biscoito agora usa cicatriz como medalha.",
+      "Quebrar rendeu aroma e frase.",
+      "A sorte se espreguiçou na luz.",
+      "A tirinha piscou de volta para você.",
+      "O crack veio com risada embutida.",
+      "A brecha abriu um teatrinho de papel.",
+      "O ritual rendeu croc e confidência.",
+      "A mesa ganhou confete de casquinha.",
+      "O biscoito suspirou aliviado: missão dada, missão cumprida.",
+      "O segredo agora está com os cotovelos na janela.",
+      "O universo distribuiu glitter de massa doce.",
+      "A cicatriz brilhou mais que previsto.",
+      "A sorte saiu com cheiro de forno.",
+      "Essa rachadura parece sorriso largo.",
+      "A mensagem se alongou igual gato ao sol.",
+      "O crocante virou anúncio particular."
+    ],
+    refresh: [
+      "A cicatriz continua elegante na mesa.",
+      "O crack já passou, mas o clima ficou.",
+      "A frase segue deitada no papel, em pose de diva.",
+      "O biscoito quebrado permanece em silêncio confiante.",
+      "O aroma de revelação ainda paira.",
+      "Nada se recompôs, só se acomodou.",
+      "A sorte continua esticando as pernas por aqui.",
+      "O confete de casquinha permanece decorando a cena.",
+      "A brecha mantém a janela aberta.",
+      "A tirinha segue olhando para você com canto de olho.",
+      "O barulho virou memória fresquinha.",
+      "A cicatriz agora é assinatura do dia.",
+      "O teatro de papel ficou em cartaz.",
+      "A mensagem repousa, mas não perde a pose.",
+      "O ritual deixou a mesa com ar de after.",
+      "O sorriso rachado ainda brilha de leve.",
+      "O universo deixou o glitter e foi tomar café.",
+      "O crocante ecoa como música distante.",
+      "O biscoito quebrado segue orgulhoso da façanha.",
+      "A luz ainda atravessa a fresta.",
+      "O segredo está sentado na beirada, apreciando a vista.",
+      "A cena parou no tempo, feliz da vida.",
+      "A revelação segue de braços cruzados, satisfeita.",
+      "O crack virou trilha sonora imaginária."
+    ]
+  },
+  crumbs: {
+    initial: [
+      "Restaram apenas fragmentos felizes.",
+      "A festa terminou em poeira doce.",
+      "O biscoito virou constelação na mesa.",
+      "Farelo é confete que se recusou a ir embora.",
+      "A sorte já foi saboreada; sobrou o pós-crédito.",
+      "Migalhas contando piadas internas.",
+      "O croc se dissolveu em risadas pequenas.",
+      "Pequenos pedaços posando de lembrança.",
+      "O chão da mesa parece céu estrelado.",
+      "Os farelos cochicham “foi divertido”.",
+      "A vitória deixou migalhas como pista.",
+      "É o biscoito em modo epílogo.",
+      "A crocância virou memória granulada.",
+      "Farelo é a risada que ficou.",
+      "Um tapete de migalhas com cheiro de piada pronta.",
+      "A sorte já contou sua história e saiu de cena.",
+      "O biscoito agora é suspiro em formato de pó.",
+      "Pedaços pequenos fazendo pose de troféu.",
+      "O palco ficou coberto de glitter crocante.",
+      "Cada farelo parece dizer “valeu”.",
+      "Migalhas são aplausos que não fizeram barulho.",
+      "O enredo terminou e sobraram doces créditos finais.",
+      "A mesa ganhou sardas douradas.",
+      "O biscoito virou geografia em escala mini."
+    ],
+    refresh: [
+      "Os farelos ainda riem baixo, espalhados.",
+      "A poeira doce permanece no palco.",
+      "A constelação crocante continua brilhando no tampo.",
+      "O confete segue teimoso, decorando a mesa.",
+      "O pós-crédito está em reprise silenciosa.",
+      "As piadas internas ecoam só para quem sabe.",
+      "A memória granulada ficou de vigia.",
+      "Os troféus minúsculos seguem exibidos.",
+      "O glitter crocante não desmontou o acampamento.",
+      "O suspiro em pó continua suspenso no ar.",
+      "As sardas douradas seguem charmosas.",
+      "O epílogo permanece deitado, satisfeito.",
+      "O chão da mesa ainda parece céu claro.",
+      "Os aplausos mudos continuam presentes.",
+      "A geografia mini mantém seus relevos.",
+      "A crocância virou quadro na parede do tempo.",
+      "Os créditos finais estão passando em loop gentil.",
+      "Farelos seguem cochichando “foi bom mesmo”.",
+      "O pós-festa ficou, sem pressa de sair.",
+      "O glitter doce ainda brilha onde caiu.",
+      "O cheiro de piada pronta não foi embora.",
+      "A mesa guarda o rastro como recordação.",
+      "As migalhas mantêm o humor em modo soneca.",
+      "O croc virou poeira com personalidade."
+    ]
+  },
+  clean: {
+    initial: [
+      "A mesa respira leve, como depois de um banho.",
+      "Tudo ficou branco e sossegado.",
+      "Silêncio bom, com cheirinho de missão cumprida.",
+      "A paz chegou, tirou os sapatos e se sentou.",
+      "A cena virou haicai em branco.",
+      "Nenhum farelo, só ar de domingo.",
+      "O dia ganhou espaço para caber outro sorriso.",
+      "Mesa limpa é tipo suspiro que deu certo.",
+      "A superfície parece nuvem comportada.",
+      "Ficou apenas o eco crocante, bem baixinho.",
+      "A história do biscoito virou memória fresca.",
+      "O vazio está macio hoje.",
+      "A tranquilidade se espreguiça no tampo liso.",
+      "O descanso tem gosto de chá morno.",
+      "A mesa está de linho invisível.",
+      "O ciclo fechou e deixou perfume de nada bom.",
+      "Ar organizado, humor em ordem.",
+      "A serenidade estacionou por aqui.",
+      "A luz bate e dança sem obstáculos.",
+      "Parece que alguém passou um pano de poesia.",
+      "A calma sorri sem dentes.",
+      "A tela branca está pronta para o próximo rabisco.",
+      "Esse silêncio tem textura de abraço.",
+      "O cenário tirou férias de migalhas."
+    ],
+    refresh: [
+      "Continua tudo claro, sem vestígios.",
+      "A paz ficou morando na superfície lisa.",
+      "O haicai branco segue escrito no ar.",
+      "O ar de domingo não arredou pé.",
+      "A nuvem comportada permanece estacionada.",
+      "O eco crocante virou lembrança distante.",
+      "A memória do biscoito segue suave, sem farelos.",
+      "O vazio macio continua confortável.",
+      "A tranquilidade permanece deitada no tampo.",
+      "O chá morno ainda perfuma o ambiente.",
+      "O linho invisível não amarrotou.",
+      "O perfume de nada bom ficou por perto.",
+      "O humor segue em ordem, sem migalhas.",
+      "A serenidade renovou o aluguel.",
+      "A luz continua dançando livre.",
+      "O pano de poesia ainda brilha.",
+      "O silêncio abraça de novo, sem pressa.",
+      "A tela branca segue pronta para outra história.",
+      "O cenário mantém férias prolongadas.",
+      "O ciclo fechado virou moldura discreta.",
+      "A calma permanece, rindo baixinho.",
+      "O espaço livre ainda cabe mais um sorriso.",
+      "A superfície lisa continua leve como um suspiro.",
+      "O descanso ficou de guarda, satisfeito."
+    ]
+  }
+};
+
 let fortunes = [...baseFortunes];
 
 function loadFortunesFromJson() {
@@ -98,11 +317,7 @@ let dragOffset = { x: 0, y: 0 };
 let moved = false;
 let startPos = { x: 0, y: 0 };
 const STORAGE_KEYS = {
-  date: 'fortune:lastBreakDate',
-  text: 'fortune:lastText',
-  numbers: 'fortune:lastNumbers',
-  crunched: 'fortune:lastCrunched',
-  cleaned: 'fortune:lastCleaned'
+  dayData: 'fortune:dayData'
 };
 const IMAGE_BASES = {
   intact: 'biscoito-inteiro',
@@ -113,6 +328,7 @@ const EMPTY_DATA_URI = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQ
 
 let imageFormat = 'png';
 let cookieState = 'intact';
+let dayData = null;
 detectWebpSupport().then(supported => {
   if (supported) {
     imageFormat = 'webp';
@@ -165,65 +381,90 @@ function writeCookie(name, value, maxAgeSeconds = 172800) {
   document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAgeSeconds}; samesite=lax`;
 }
 
-function getStoredLock() {
+function createDefaultDayData() {
   const today = getTodayKey();
-  let date = null;
-  let text = null;
-  let numbers = null;
-  let crunchedState = false;
-  let cleanedState = false;
+  const { initial, refresh } = pickMessagesForState('intact');
+  return {
+    date: today,
+    state: 'intact',
+    text: '',
+    numbers: '',
+    crunched: false,
+    cleaned: false,
+    messageInitial: initial,
+    messageRefresh: refresh,
+    messageStage: 'initial'
+  };
+}
+
+function loadDayData() {
+  const today = getTodayKey();
+  let data = null;
 
   try {
-    date = localStorage.getItem(STORAGE_KEYS.date);
-    text = localStorage.getItem(STORAGE_KEYS.text);
-    numbers = localStorage.getItem(STORAGE_KEYS.numbers);
-    crunchedState = localStorage.getItem(STORAGE_KEYS.crunched) === 'true';
-    cleanedState = localStorage.getItem(STORAGE_KEYS.cleaned) === 'true';
+    const raw = localStorage.getItem(STORAGE_KEYS.dayData);
+    if (raw) data = JSON.parse(raw);
   } catch (error) {
-    console.warn('LocalStorage indisponível, tentando cookie:', error);
+    console.warn('Não foi possível ler o estado diário no localStorage:', error);
   }
 
-  if (!date) {
-    const cookieData = readCookie('fortuneLock');
+  if (!data) {
+    const cookieData = readCookie(STORAGE_KEYS.dayData);
     if (cookieData) {
       try {
-        const parsed = JSON.parse(cookieData);
-        date = parsed.date;
-        text = parsed.text;
-        numbers = parsed.numbers;
-        crunchedState = Boolean(parsed.crunched);
-        cleanedState = Boolean(parsed.cleaned);
+        data = JSON.parse(cookieData);
       } catch (error) {
-        console.warn('Não foi possível ler o cookie de trava diária:', error);
+        console.warn('Não foi possível ler o estado diário no cookie:', error);
       }
     }
   }
 
-  return { date, text, numbers, crunched: crunchedState, cleaned: cleanedState, todayMatch: date === today };
+  if (!data || data.date !== today) {
+    data = createDefaultDayData();
+    persistDayData(data);
+  } else {
+    const defaults = createDefaultDayData();
+    data = { ...defaults, ...data, date: today };
+  }
+
+  return data;
 }
 
-function isLockedToday() {
-  const lock = getStoredLock();
-  return lock.todayMatch;
-}
-
-function saveTodayFortune(text, numbers, crunchedState = false, cleanedState = false) {
-  const today = getTodayKey();
+function persistDayData(data = dayData) {
   try {
-    localStorage.setItem(STORAGE_KEYS.date, today);
-    localStorage.setItem(STORAGE_KEYS.text, text);
-    localStorage.setItem(STORAGE_KEYS.numbers, numbers);
-    localStorage.setItem(STORAGE_KEYS.crunched, String(crunchedState));
-    localStorage.setItem(STORAGE_KEYS.cleaned, String(cleanedState));
+    localStorage.setItem(STORAGE_KEYS.dayData, JSON.stringify(data));
   } catch (error) {
-    console.warn('Não foi possível salvar a trava diária no localStorage:', error);
+    console.warn('Não foi possível salvar o estado diário no localStorage:', error);
   }
 
   try {
-    writeCookie('fortuneLock', JSON.stringify({ date: today, text, numbers, crunched: crunchedState, cleaned: cleanedState }));
+    writeCookie(STORAGE_KEYS.dayData, JSON.stringify(data));
   } catch (error) {
-    console.warn('Não foi possível salvar a trava diária no cookie:', error);
+    console.warn('Não foi possível salvar o estado diário no cookie:', error);
   }
+}
+
+function pickMessagesForState(state) {
+  const pool = STATE_MESSAGES[state] || STATE_MESSAGES.intact;
+  const randomFrom = (list) => list[Math.floor(Math.random() * list.length)] || '';
+  return {
+    initial: randomFrom(pool.initial),
+    refresh: randomFrom(pool.refresh)
+  };
+}
+
+function ensureMessagesForState(state) {
+  if (dayData.state !== state || !dayData.messageInitial || !dayData.messageRefresh) {
+    const { initial, refresh } = pickMessagesForState(state);
+    dayData.messageInitial = initial;
+    dayData.messageRefresh = refresh;
+    dayData.messageStage = 'initial';
+  }
+}
+
+function updateDayData(partial) {
+  dayData = { ...dayData, ...partial };
+  persistDayData();
 }
 
 function showDailyLockNotice(message) {
@@ -232,49 +473,72 @@ function showDailyLockNotice(message) {
   dailyNotice.classList.add('visible');
 }
 
-function restoreTodayFortune() {
-  const lock = getStoredLock();
-  if (!lock.todayMatch) return false;
+function showCurrentMessage() {
+  if (!dayData) return;
+  const message = dayData.messageStage === 'initial' ? dayData.messageInitial : dayData.messageRefresh;
+  if (message) {
+    showDailyLockNotice(message);
+    if (dayData.messageStage === 'initial') {
+      dayData.messageStage = 'refresh';
+      persistDayData();
+    }
+  }
+}
 
-  const storedFortune = lock.text || 'Sua sorte do dia já foi revelada.';
-  const storedNumbers = lock.numbers || '';
-
-  broken = true;
-  crunched = lock.crunched;
-  cleaned = lock.cleaned;
-
-  if (cleaned) {
-    cookieState = 'clean';
-    cookieImage.classList.remove('broken', 'crumbled');
-    cookieImage.classList.add('cleaned');
-    cookieImage.alt = 'Ambiente limpo, sem biscoito';
-  } else if (crunched) {
-    cookieState = 'crumbs';
-    cookieImage.alt = 'Biscoito da sorte em farelos';
-    cookieImage.classList.remove('cleaned');
-    cookieImage.classList.add('broken', 'crumbled');
-  } else {
-    cookieState = 'broken';
-    cookieImage.alt = 'Biscoito da sorte quebrado';
-    cookieImage.classList.remove('cleaned');
-    cookieImage.classList.add('broken');
+function applyStateVisuals(state) {
+  cookieImage.classList.remove('broken', 'crumbled', 'cleaned');
+  switch (state) {
+    case 'broken':
+      broken = true;
+      crunched = false;
+      cleaned = false;
+      cookieState = 'broken';
+      cookieImage.classList.add('broken');
+      cookieImage.alt = 'Biscoito da sorte quebrado';
+      break;
+    case 'crumbs':
+      broken = true;
+      crunched = true;
+      cleaned = false;
+      cookieState = 'crumbs';
+      cookieImage.classList.add('broken', 'crumbled');
+      cookieImage.alt = 'Biscoito da sorte em farelos';
+      break;
+    case 'clean':
+      broken = true;
+      crunched = true;
+      cleaned = true;
+      cookieState = 'clean';
+      cookieImage.classList.add('cleaned');
+      cookieImage.alt = 'Ambiente limpo, sem biscoito';
+      break;
+    case 'intact':
+    default:
+      broken = false;
+      crunched = false;
+      cleaned = false;
+      cookieState = 'intact';
+      cookieImage.alt = 'Biscoito da sorte fechado';
+      break;
   }
   updateCookieImage();
   updateShadow();
+}
 
+function syncFortuneStripFromData() {
+  if (!dayData) return;
+  if (dayData.state === 'intact') {
+    fortuneStrip.classList.remove('revealed');
+    return;
+  }
+
+  const storedFortune = dayData.text || 'Sua sorte do dia já foi revelada.';
+  const storedNumbers = dayData.numbers || '';
   revealFortune({
     fortuneTextOverride: storedFortune,
     numbersOverride: storedNumbers,
     skipAnimation: true
   });
-
-  const refreshMessage = cleaned
-    ? 'Ambiente limpo e sem biscoito. Amanhã tem outro, combinado?'
-    : crunched
-      ? 'Só farelo por aqui. Amanhã tem biscoito novo.'
-      : 'A sorte já saiu! Aproveite a tirinha e agora é só comer o biscoito.';
-  showDailyLockNotice(refreshMessage);
-  return true;
 }
 
 function randomFortune() {
@@ -443,47 +707,57 @@ function playChew() {
 }
 
 function breakCookie() {
-  if (cleaned) {
-    showDailyLockNotice('Ambiente limpo e sem biscoito. Amanhã tem outro, combinado?');
+  if (!dayData) return;
+  const currentState = dayData.state;
+
+  if (currentState === 'clean') {
+    showCurrentMessage();
     return;
   }
 
-  if (broken && !crunched) {
-    playChew();
-    cookieState = 'crumbs';
-    updateCookieImage();
-    cookieImage.alt = 'Biscoito da sorte em farelos';
-    cookieImage.classList.add('crumbled');
-    crunched = true;
-    saveTodayFortune(fortuneText.textContent || '', luckyNumbers.textContent || '', true, false);
-    showDailyLockNotice('Sobrou só o farelo. Clique para limpar a mesa.');
-    return;
-  }
-
-  if (broken && crunched) {
+  if (currentState === 'crumbs') {
     cleanAfterCrumbs();
-    saveTodayFortune(fortuneText.textContent || '', luckyNumbers.textContent || '', true, true);
-    showDailyLockNotice('Ambiente limpo! Amanhã tem biscoito novo.');
+    ensureMessagesForState('clean');
+    updateDayData({
+      state: 'clean',
+      crunched: true,
+      cleaned: true,
+      messageStage: dayData.messageStage
+    });
+    showCurrentMessage();
     return;
   }
 
-  if (isLockedToday()) {
-    showDailyLockNotice('Esse biscoito já foi saboreado hoje.\nAmanhã tem outro, combinado?');
+  if (currentState === 'broken') {
+    playChew();
+    ensureMessagesForState('crumbs');
+    applyStateVisuals('crumbs');
+    updateDayData({
+      state: 'crumbs',
+      crunched: true,
+      cleaned: false,
+      messageStage: dayData.messageStage
+    });
+    showCurrentMessage();
     return;
   }
 
-  cookieState = 'broken';
-  updateCookieImage();
-  cookieImage.alt = 'Biscoito da sorte quebrado';
-  broken = true;
-  cookieImage.classList.add('broken');
+  // intact -> quebrado
+  ensureMessagesForState('broken');
+  applyStateVisuals('broken');
   playCrack();
   spawnCrumbs();
-  updateShadow();
 
   const { text, numbers } = revealFortune();
-  saveTodayFortune(text, numbers, false, false);
-  showDailyLockNotice('Biscoito servido! Amanhã tem outro esperando você.');
+  updateDayData({
+    state: 'broken',
+    text,
+    numbers,
+    crunched: false,
+    cleaned: false,
+    messageStage: dayData.messageStage
+  });
+  showCurrentMessage();
 }
 
 function updateShadow() {
@@ -595,13 +869,15 @@ window.addEventListener('resize', () => {
     positionStripAboveCookie();
   }
 });
-const restored = restoreTodayFortune();
-updateShadow();
+
+dayData = loadDayData();
+ensureMessagesForState(dayData.state);
+applyStateVisuals(dayData.state);
+syncFortuneStripFromData();
+
 requestAnimationFrame(() => {
   document.body.classList.remove('app-loading');
-  if (!restored) {
-    showDailyLockNotice('Toque no biscoito para revelar sua sorte.');
-  }
+  showCurrentMessage();
 });
 
 function randomizeTilt() {
