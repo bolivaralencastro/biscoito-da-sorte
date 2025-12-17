@@ -3,7 +3,8 @@
     left: 50%;
     top: 50%;
     --flip-shade: 0;
-    transform: translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(0.96) skewX(var(--skew, -0.6deg));
+    --flip-rotation: 0deg;
+    transform: translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(0.96) skewX(var(--skew, -0.6deg)) rotateY(var(--flip-rotation));
     background: linear-gradient(120deg, rgba(0,0,0,0.02), transparent 26%, rgba(0,0,0,0.015) 46%, transparent 70%), var(--paper);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.16);
     padding: 10px 22px;
@@ -22,13 +23,13 @@
 
 .fortune-strip.revealed {
     opacity: 1;
-    transform: translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(1) skewX(var(--skew, -0.6deg));
+    transform: translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(1) skewX(var(--skew, -0.6deg)) rotateY(var(--flip-rotation));
     pointer-events: auto;
 }
 
 .fortune-strip.flipped {
-    transform: translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(1) skewX(var(--skew, -0.6deg));
     --flip-shade: 0.12;
+    --flip-rotation: 180deg;
 }
 
 .fortune-strip:active {
@@ -82,12 +83,6 @@
     width: 100%;
     min-height: 54px;
     transform-style: preserve-3d;
-    transform: rotateY(0deg);
-    transition: transform 220ms ease;
-}
-
-.fortune-strip.flipped .fortune-inner {
-    transform: rotateY(180deg);
 }
 
 .face {
