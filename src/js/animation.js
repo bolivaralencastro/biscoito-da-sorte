@@ -49,24 +49,13 @@ export function createCrumbsAnimation(cookieImage, count = 25) {
   return crumbs;
 }
 
-// Animate reveal with GSAP if available
-export function animateRevealWithGsap(fortuneStrip) {
-  if (window.gsap) {
-    gsap.fromTo(fortuneStrip, 
-      { 
-        scale: 0.8, 
-        opacity: 0,
-        rotationY: -90
-      },
-      { 
-        scale: 1, 
-        opacity: 1,
-        rotationY: 0,
-        duration: 0.4,
-        ease: "back.out(1.7)"
-      }
-    );
-  }
+// Animate reveal using CSS keyframes (no external deps)
+export function animateReveal(fortuneStrip) {
+  if (!fortuneStrip) return;
+  fortuneStrip.classList.add('animate-pop');
+  fortuneStrip.addEventListener('animationend', () => {
+    fortuneStrip.classList.remove('animate-pop');
+  }, { once: true });
 }
 
 // Position strip above cookie

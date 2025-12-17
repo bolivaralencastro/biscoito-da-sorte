@@ -4,6 +4,12 @@ import { initUI } from './ui.js';
 import { loadFortunesFromJson } from './fortunes.js';
 import { loadCookieVariantsFromJson } from './cookies.js';
 
+// Import Microsoft Clarity
+import * as clarity from '@microsoft/clarity';
+
+// Initialize Clarity with the project ID
+clarity.start('uloo66pzgc');
+
 // Load fortunes and cookie variants from JSON on startup
 Promise.all([loadFortunesFromJson(), loadCookieVariantsFromJson()])
   .then(async () => {

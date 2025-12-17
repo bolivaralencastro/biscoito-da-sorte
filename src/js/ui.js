@@ -1,12 +1,14 @@
 // UI module for handling user interface interactions
 
 import { playCrack, playChew } from './audio.js';
-import { createCrumbsAnimation, animateRevealWithGsap, positionStripAboveCookie, randomizeTilt } from './animation.js';
+import { createCrumbsAnimation, animateReveal, positionStripAboveCookie, randomizeTilt } from './animation.js';
 import { getRandomFortune, generateLuckyNumbers } from './fortunes.js';
 import { getRandomMessageForState, getMessagesForState } from './messages.js';
 import { loadDayData, persistDayData, createDefaultDayData } from './storage.js';
 import { getCookieVariantById, getRandomCookieVariant } from './cookies.js';
 import { IMAGE_BASES, EMPTY_DATA_URI, DEFAULT_COOKIE_STATE } from './config.js';
+
+// === Globals & DOM refs ======================================================
 
 // Global variables that were in the original main.js
 let dayData = null;
@@ -31,10 +33,12 @@ let stage = null;
 let cookieZone = null;
 let fortuneInner = null;
 let dailyNotice = null;
+let cookieSource = null;
 
-// Initialize UI elements
+// === Init & setup ============================================================
 export async function initUI() {
   cookieImage = document.getElementById('cookieImage');
+  cookieSource = document.querySelector('picture source');
   fortuneStrip = document.getElementById('fortuneStrip');
   fortuneText = document.getElementById('fortuneText');
   luckyNumbers = document.getElementById('luckyNumbers');
@@ -42,6 +46,13 @@ export async function initUI() {
   cookieZone = document.querySelector('.cookie-zone');
   fortuneInner = document.querySelector('.fortune-inner');
   dailyNotice = document.getElementById('dailyNotice');
+
+  // Tirinha focável/ARIA para teclado (evita remoções acidentais em rewrites)
+  if (fortuneStrip) {
+    fortuneStrip.setAttribute('tabindex', '0');
+    fortuneStrip.setAttribute('role', 'button');
+    fortuneStrip.setAttribute('aria-pressed', 'false');
+  }
 
   // Load day data
   dayData = await loadDayData();
@@ -80,10 +91,15 @@ function setupEventListeners() {
   
   if (fortuneStrip) {
     fortuneStrip.addEventListener('click', handleFortuneStripClick);
+    fortuneStrip.addEventListener('keydown', handleFortuneStripKeydown);
     setupFortuneStripDrag();
   }
+
+  window.addEventListener('resize', handleViewportChange);
+  window.addEventListener('orientationchange', handleViewportChange);
 }
 
+// === Event handlers: cookie & fortune strip =================================
 // Handle cookie click
 async function handleCookieClick() {
   const previousState = dayData.state;
@@ -154,9 +170,17 @@ function handleFortuneStripClick() {
     if (fortuneInner) {
       fortuneInner.style.transform = fortuneStrip.classList.contains('flipped') ? 'rotateY(180deg)' : 'rotateY(0deg)';
     }
+    fortuneStrip.setAttribute('aria-pressed', fortuneStrip.classList.contains('flipped') ? 'true' : 'false');
   }
 }
 
+function handleFortuneStripKeydown(event) {
+  if (event.key !== 'Enter' && event.key !== ' ') return;
+  event.preventDefault();
+  handleFortuneStripClick();
+}
+
+// === Drag handling ===========================================================
 // Set up fortune strip drag
 function setupFortuneStripDrag() {
   if (!fortuneStrip) return;
@@ -189,7 +213,7 @@ function setupFortuneStripDrag() {
     }
     const stageRect = stage.getBoundingClientRect();
     const stripRect = fortuneStrip.getBoundingClientRect();
-    const margin = 12;
+    const margin = 12; // evita colar nas bordas ao salvar posição
 
     const desiredLeft = event.clientX - stageRect.left - dragOffset.x;
     const desiredTop = event.clientY - stageRect.top - dragOffset.y;
@@ -245,23 +269,34 @@ function detectWebpSupport() {
     const img = new Image();
     img.onload = () => resolve(img.width === 1);
     img.onerror = () => resolve(false);
-    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4ICwAAAAvAAAAAAMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAQUxQSAwAAAA0AIAnQEQAA';
+    img.src = 'data:image/webp;base64,UklGRi4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
   });
 }
 
+// === Visuals & assets ========================================================
 // Update cookie image based on state and format
 function updateCookieImage() {
   if (!cookieImage) return;
   
   if (cookieState === 'clean') {
     cookieImage.src = EMPTY_DATA_URI;
+    cookieImage.srcset = '';
+    if (cookieSource) cookieSource.srcset = EMPTY_DATA_URI;
     return;
   }
   
   const base = (cookieVariant?.states && cookieVariant.states[cookieState]) || IMAGE_BASES[cookieState] || IMAGE_BASES.intact;
   const format = selectBestImageFormat();
   imageFormat = format;
-  cookieImage.src = `${base}.${format}`;
+  const resolvedSrc = `${base}.${format}`;
+
+  // Atualiza <img> e <source> para evitar que o <picture> segure o asset antigo
+  cookieImage.src = resolvedSrc;
+  cookieImage.srcset = resolvedSrc;
+  if (cookieSource) {
+    cookieSource.srcset = format === 'webp' ? resolvedSrc : '';
+    cookieSource.type = format === 'webp' ? 'image/webp' : '';
+  }
 }
 
 function selectBestImageFormat() {
@@ -368,6 +403,7 @@ function syncFortuneStripFromData() {
   applyStoredFortunePosition();
 }
 
+// === Fortune reveal & tilt ===================================================
 // Reveal fortune with optional overrides
 function revealFortune(options = {}) {
   const {
@@ -394,12 +430,9 @@ function revealFortune(options = {}) {
   // Força reflow para reiniciar a animação da tirinha
   void fortuneStrip.offsetWidth;
   fortuneInner.style.transform = 'rotateY(0deg)';
-  if (window.gsap) {
-    gsap.set(fortuneStrip, { rotationY: 0, rotationX: 0, transformPerspective: 1200, transformOrigin: '50% 50%' });
-  }
   fortuneStrip.classList.add('revealed');
   if (!skipAnimation) {
-    animateRevealWithGsap(fortuneStrip);
+    animateReveal(fortuneStrip);
   }
   applyStoredFortunePosition();
   
@@ -422,6 +455,7 @@ function updateDayData(partial) {
   persistDayData(dayData);
 }
 
+// === Persistence helpers =====================================================
 // Ensure a cookie variant is selected for the day
 function ensureCookieVariant() {
   const selected = dayData?.cookieVariantId ? getCookieVariantById(dayData.cookieVariantId) : null;
@@ -475,6 +509,14 @@ function applyStoredFortunePosition() {
   fortuneStrip.style.top = `${centeredTop}px`;
 }
 
+function handleViewportChange() {
+  if (!dayData || !fortuneStrip) return;
+  requestAnimationFrame(() => {
+    applyStoredFortunePosition();
+    saveFortunePosition();
+  });
+}
+
 // Ensure messages exist for state
 async function ensureMessagesForState(state, forceReset = false) {
   if (forceReset || dayData.state !== state || !dayData.messageInitial || !dayData.messageRefresh) {
@@ -492,6 +534,7 @@ function showDailyLockNotice(message) {
   dailyNotice.classList.add('visible');
 }
 
+// === Messages / daily notice ================================================
 // Show current message
 async function showCurrentMessage() {
   if (!dayData) return;

@@ -1,0 +1,1934 @@
+[
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/js/ui.js",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 557,
+        "column": 0
+      }
+    },
+    "ast_structure": {
+      "total_lines": 557,
+      "function_count": 21,
+      "import_count": 7,
+      "export_count": 1,
+      "functions": [
+        {
+          "name": "setupEventListeners",
+          "line": 87,
+          "type": "function_declaration"
+        },
+        {
+          "name": "handleFortuneStripClick",
+          "line": 167,
+          "type": "function_declaration"
+        },
+        {
+          "name": "handleFortuneStripKeydown",
+          "line": 177,
+          "type": "function_declaration"
+        },
+        {
+          "name": "setupFortuneStripDrag",
+          "line": 185,
+          "type": "function_declaration"
+        },
+        {
+          "name": "onPointerDown",
+          "line": 193,
+          "type": "arrow_function"
+        },
+        {
+          "name": "onPointerMove",
+          "line": 206,
+          "type": "arrow_function"
+        },
+        {
+          "name": "onPointerUp",
+          "line": 236,
+          "type": "arrow_function"
+        },
+        {
+          "name": "detectWebpSupport",
+          "line": 267,
+          "type": "function_declaration"
+        },
+        {
+          "name": "updateCookieImage",
+          "line": 278,
+          "type": "function_declaration"
+        },
+        {
+          "name": "selectBestImageFormat",
+          "line": 302,
+          "type": "function_declaration"
+        },
+        {
+          "name": "getCookieCenter",
+          "line": 310,
+          "type": "function_declaration"
+        },
+        {
+          "name": "applyStateVisuals",
+          "line": 324,
+          "type": "function_declaration"
+        },
+        {
+          "name": "updateShadow",
+          "line": 367,
+          "type": "function_declaration"
+        },
+        {
+          "name": "syncFortuneStripFromData",
+          "line": 388,
+          "type": "function_declaration"
+        },
+        {
+          "name": "revealFortune(options",
+          "line": 408,
+          "type": "function_expression"
+        },
+        {
+          "name": "updateDayData",
+          "line": 453,
+          "type": "function_declaration"
+        },
+        {
+          "name": "ensureCookieVariant",
+          "line": 460,
+          "type": "function_declaration"
+        },
+        {
+          "name": "saveFortunePosition",
+          "line": 472,
+          "type": "function_declaration"
+        },
+        {
+          "name": "applyStoredFortunePosition",
+          "line": 484,
+          "type": "function_declaration"
+        },
+        {
+          "name": "handleViewportChange",
+          "line": 512,
+          "type": "function_declaration"
+        },
+        {
+          "name": "showDailyLockNotice",
+          "line": 531,
+          "type": "function_declaration"
+        }
+      ],
+      "imports": [
+        {
+          "statement": "import { playCrack, playChew } from './audio.js';",
+          "line": 3
+        },
+        {
+          "statement": "import { createCrumbsAnimation, animateReveal, positionStripAboveCookie, randomizeTilt } from './animation.js';",
+          "line": 4
+        },
+        {
+          "statement": "import { getRandomFortune, generateLuckyNumbers } from './fortunes.js';",
+          "line": 5
+        },
+        {
+          "statement": "import { getRandomMessageForState, getMessagesForState } from './messages.js';",
+          "line": 6
+        },
+        {
+          "statement": "import { loadDayData, persistDayData, createDefaultDayData } from './storage.js';",
+          "line": 7
+        },
+        {
+          "statement": "import { getCookieVariantById, getRandomCookieVariant } from './cookies.js';",
+          "line": 8
+        },
+        {
+          "statement": "import { IMAGE_BASES, EMPTY_DATA_URI, DEFAULT_COOKIE_STATE } from './config.js';",
+          "line": 9
+        }
+      ],
+      "exports": [
+        {
+          "statement": "export async function initUI() {",
+          "line": 39
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/js/fortunes.js",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 76,
+        "column": 0
+      }
+    },
+    "ast_structure": {
+      "total_lines": 76,
+      "function_count": 2,
+      "import_count": 1,
+      "export_count": 4,
+      "functions": [
+        {
+          "name": "normalizeFortunes",
+          "line": 45,
+          "type": "function_declaration"
+        },
+        {
+          "name": "dedupeByText",
+          "line": 64,
+          "type": "function_declaration"
+        }
+      ],
+      "imports": [
+        {
+          "statement": "import { BASE_FORTUNES } from './config.js';",
+          "line": 3
+        }
+      ],
+      "exports": [
+        {
+          "statement": "export function loadFortunesFromJson() {",
+          "line": 7
+        },
+        {
+          "statement": "export function getRandomFortune() {",
+          "line": 25
+        },
+        {
+          "statement": "export function generateLuckyNumbers() {",
+          "line": 30
+        },
+        {
+          "statement": "export function getFortunes() {",
+          "line": 41
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/js/cookies.js",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 55,
+        "column": 0
+      }
+    },
+    "ast_structure": {
+      "total_lines": 55,
+      "function_count": 2,
+      "import_count": 1,
+      "export_count": 3,
+      "functions": [
+        {
+          "name": "getAvailableVariants",
+          "line": 40,
+          "type": "function_declaration"
+        },
+        {
+          "name": "normalizeVariant",
+          "line": 44,
+          "type": "function_declaration"
+        }
+      ],
+      "imports": [
+        {
+          "statement": "import { IMAGE_BASES } from './config.js';",
+          "line": 3
+        }
+      ],
+      "exports": [
+        {
+          "statement": "export async function loadCookieVariantsFromJson() {",
+          "line": 14
+        },
+        {
+          "statement": "export function getRandomCookieVariant() {",
+          "line": 30
+        },
+        {
+          "statement": "export function getCookieVariantById(id) {",
+          "line": 35
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/js/config.js",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 82,
+        "column": 0
+      }
+    },
+    "ast_structure": {
+      "total_lines": 82,
+      "function_count": 0,
+      "import_count": 0,
+      "export_count": 5,
+      "functions": [],
+      "imports": [],
+      "exports": [
+        {
+          "statement": "export const STORAGE_KEYS = {",
+          "line": 3
+        },
+        {
+          "statement": "export const IMAGE_BASES = {",
+          "line": 7
+        },
+        {
+          "statement": "export const EMPTY_DATA_URI = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';",
+          "line": 13
+        },
+        {
+          "statement": "export const BASE_FORTUNES = [",
+          "line": 15
+        },
+        {
+          "statement": "export const DEFAULT_COOKIE_STATE = {",
+          "line": 76
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/js/main.js",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 18,
+        "column": 0
+      }
+    },
+    "ast_structure": {
+      "total_lines": 18,
+      "function_count": 0,
+      "import_count": 3,
+      "export_count": 0,
+      "functions": [],
+      "imports": [
+        {
+          "statement": "import { initUI } from './ui.js';",
+          "line": 3
+        },
+        {
+          "statement": "import { loadFortunesFromJson } from './fortunes.js';",
+          "line": 4
+        },
+        {
+          "statement": "import { loadCookieVariantsFromJson } from './cookies.js';",
+          "line": 5
+        }
+      ],
+      "exports": []
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/js/audio.js",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 121,
+        "column": 1
+      }
+    },
+    "ast_structure": {
+      "total_lines": 121,
+      "function_count": 2,
+      "import_count": 0,
+      "export_count": 3,
+      "functions": [
+        {
+          "name": "scheduleGrain",
+          "line": 80,
+          "type": "arrow_function"
+        },
+        {
+          "name": "addBite",
+          "line": 107,
+          "type": "arrow_function"
+        }
+      ],
+      "imports": [],
+      "exports": [
+        {
+          "statement": "export function getAudioContext() {",
+          "line": 5
+        },
+        {
+          "statement": "export function playCrack() {",
+          "line": 12
+        },
+        {
+          "statement": "export function playChew() {",
+          "line": 75
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/js/animation.js",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 84,
+        "column": 0
+      }
+    },
+    "ast_structure": {
+      "total_lines": 84,
+      "function_count": 0,
+      "import_count": 0,
+      "export_count": 4,
+      "functions": [],
+      "imports": [],
+      "exports": [
+        {
+          "statement": "export function createCrumbsAnimation(cookieImage, count = 25) {",
+          "line": 4
+        },
+        {
+          "statement": "export function animateReveal(fortuneStrip) {",
+          "line": 53
+        },
+        {
+          "statement": "export function positionStripAboveCookie(fortuneStrip, cookieImage) {",
+          "line": 62
+        },
+        {
+          "statement": "export function randomizeTilt() {",
+          "line": 75
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/js/messages.js",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 37,
+        "column": 0
+      }
+    },
+    "ast_structure": {
+      "total_lines": 37,
+      "function_count": 1,
+      "import_count": 0,
+      "export_count": 2,
+      "functions": [
+        {
+          "name": "randomFrom",
+          "line": 24,
+          "type": "arrow_function"
+        }
+      ],
+      "imports": [],
+      "exports": [
+        {
+          "statement": "export async function getRandomMessageForState(state, stage = 'initial') {",
+          "line": 4
+        },
+        {
+          "statement": "export async function getMessagesForState(state) {",
+          "line": 19
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/js/storage.js",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 181,
+        "column": 0
+      }
+    },
+    "ast_structure": {
+      "total_lines": 181,
+      "function_count": 1,
+      "import_count": 2,
+      "export_count": 6,
+      "functions": [
+        {
+          "name": "isValidDayData",
+          "line": 15,
+          "type": "function_declaration"
+        }
+      ],
+      "imports": [
+        {
+          "statement": "import { STORAGE_KEYS } from './config.js';",
+          "line": 3
+        },
+        {
+          "statement": "import { getMessagesForState } from './messages.js';",
+          "line": 180
+        }
+      ],
+      "exports": [
+        {
+          "statement": "export function readCookie(name) {",
+          "line": 5
+        },
+        {
+          "statement": "export function writeCookie(name, value, maxAgeSeconds = 172800) {",
+          "line": 10
+        },
+        {
+          "statement": "export async function loadDayData() {",
+          "line": 23
+        },
+        {
+          "statement": "export function persistDayData(data) {",
+          "line": 113
+        },
+        {
+          "statement": "export async function createDefaultDayData() {",
+          "line": 152
+        },
+        {
+          "statement": "export function getTodayKey() {",
+          "line": 172
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/css/base.css",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 30,
+        "column": 1
+      }
+    },
+    "ast_structure": {
+      "total_lines": 30,
+      "selector_count": 4,
+      "property_count": 18,
+      "selectors": [
+        {
+          "selector": ":root",
+          "line": 1
+        },
+        {
+          "selector": "*",
+          "line": 11
+        },
+        {
+          "selector": "body",
+          "line": 15
+        },
+        {
+          "selector": "body.app-loading .daily-notice",
+          "line": 28
+        }
+      ],
+      "properties": [
+        {
+          "property": "--text",
+          "value": "#1a1a1a",
+          "rule": ":root",
+          "line": 2
+        },
+        {
+          "property": "--muted",
+          "value": "#7a7a7a",
+          "rule": ":root",
+          "line": 3
+        },
+        {
+          "property": "--paper",
+          "value": "#ffffff",
+          "rule": ":root",
+          "line": 4
+        },
+        {
+          "property": "--paper-shadow",
+          "value": "rgba(0, 0, 0, 0.07)",
+          "rule": ":root",
+          "line": 5
+        },
+        {
+          "property": "--outline",
+          "value": "#e5e5e5",
+          "rule": ":root",
+          "line": 6
+        },
+        {
+          "property": "--accent",
+          "value": "#f0a95a",
+          "rule": ":root",
+          "line": 7
+        },
+        {
+          "property": "--numbers",
+          "value": "#d26464",
+          "rule": ":root",
+          "line": 8
+        },
+        {
+          "property": "box-sizing",
+          "value": "border-box",
+          "rule": "*",
+          "line": 12
+        },
+        {
+          "property": "margin",
+          "value": "0",
+          "rule": "body",
+          "line": 16
+        },
+        {
+          "property": "min-height",
+          "value": "100vh",
+          "rule": "body",
+          "line": 17
+        },
+        {
+          "property": "background",
+          "value": "#fff",
+          "rule": "body",
+          "line": 18
+        },
+        {
+          "property": "color",
+          "value": "var(--text)",
+          "rule": "body",
+          "line": 19
+        },
+        {
+          "property": "font-family",
+          "value": "\"Helvetica Neue\", Arial, sans-serif",
+          "rule": "body",
+          "line": 20
+        },
+        {
+          "property": "display",
+          "value": "grid",
+          "rule": "body",
+          "line": 21
+        },
+        {
+          "property": "place-items",
+          "value": "center",
+          "rule": "body",
+          "line": 22
+        },
+        {
+          "property": "user-select",
+          "value": "none",
+          "rule": "body",
+          "line": 23
+        },
+        {
+          "property": "position",
+          "value": "relative",
+          "rule": "body",
+          "line": 24
+        },
+        {
+          "property": "visibility",
+          "value": "hidden",
+          "rule": "body.app-loading .daily-notice",
+          "line": 29
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/css/components/cookie.css",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 25,
+        "column": 1
+      }
+    },
+    "ast_structure": {
+      "total_lines": 25,
+      "selector_count": 5,
+      "property_count": 12,
+      "selectors": [
+        {
+          "selector": ".cookie",
+          "line": 1
+        },
+        {
+          "selector": ".cookie.cleaned",
+          "line": 11
+        },
+        {
+          "selector": ".cookie.broken",
+          "line": 17
+        },
+        {
+          "selector": "@media (max-width: 520px)",
+          "line": 21
+        },
+        {
+          "selector": ".cookie",
+          "line": 22
+        }
+      ],
+      "properties": [
+        {
+          "property": "width",
+          "value": "260px",
+          "rule": ".cookie",
+          "line": 2
+        },
+        {
+          "property": "height",
+          "value": "auto",
+          "rule": ".cookie",
+          "line": 3
+        },
+        {
+          "property": "cursor",
+          "value": "pointer",
+          "rule": ".cookie",
+          "line": 4
+        },
+        {
+          "property": "transition",
+          "value": "transform 200ms ease",
+          "rule": ".cookie",
+          "line": 5
+        },
+        {
+          "property": "user-select",
+          "value": "none",
+          "rule": ".cookie",
+          "line": 6
+        },
+        {
+          "property": "position",
+          "value": "relative",
+          "rule": ".cookie",
+          "line": 7
+        },
+        {
+          "property": "z-index",
+          "value": "2",
+          "rule": ".cookie",
+          "line": 8
+        },
+        {
+          "property": "opacity",
+          "value": "0",
+          "rule": ".cookie.cleaned",
+          "line": 12
+        },
+        {
+          "property": "pointer-events",
+          "value": "none",
+          "rule": ".cookie.cleaned",
+          "line": 13
+        },
+        {
+          "property": "transition",
+          "value": "opacity 160ms ease",
+          "rule": ".cookie.cleaned",
+          "line": 14
+        },
+        {
+          "property": "cursor",
+          "value": "pointer",
+          "rule": ".cookie.broken",
+          "line": 18
+        },
+        {
+          "property": "width",
+          "value": "210px",
+          "rule": ".cookie",
+          "line": 23
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/css/components/animations.css",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 25,
+        "column": 1
+      }
+    },
+    "ast_structure": {
+      "total_lines": 25,
+      "selector_count": 4,
+      "property_count": 16,
+      "selectors": [
+        {
+          "selector": ".crumb",
+          "line": 1
+        },
+        {
+          "selector": "@keyframes crumb-fall",
+          "line": 15
+        },
+        {
+          "selector": "0%",
+          "line": 16
+        },
+        {
+          "selector": "100%",
+          "line": 20
+        }
+      ],
+      "properties": [
+        {
+          "property": "position",
+          "value": "absolute",
+          "rule": ".crumb",
+          "line": 2
+        },
+        {
+          "property": "width",
+          "value": "6px",
+          "rule": ".crumb",
+          "line": 3
+        },
+        {
+          "property": "height",
+          "value": "6px",
+          "rule": ".crumb",
+          "line": 4
+        },
+        {
+          "property": "background",
+          "value": "#d6a15e",
+          "rule": ".crumb",
+          "line": 5
+        },
+        {
+          "property": "border-radius",
+          "value": "50%",
+          "rule": ".crumb",
+          "line": 6
+        },
+        {
+          "property": "box-shadow",
+          "value": "0 1px 3px rgba(0,0,0,0.2)",
+          "rule": ".crumb",
+          "line": 7
+        },
+        {
+          "property": "opacity",
+          "value": "0.95",
+          "rule": ".crumb",
+          "line": 8
+        },
+        {
+          "property": "pointer-events",
+          "value": "none",
+          "rule": ".crumb",
+          "line": 9
+        },
+        {
+          "property": "animation",
+          "value": "crumb-fall 0.9s ease-out forwards",
+          "rule": ".crumb",
+          "line": 10
+        },
+        {
+          "property": "transform",
+          "value": "translate(0, 0) scale(1)",
+          "rule": ".crumb",
+          "line": 11
+        },
+        {
+          "property": "z-index",
+          "value": "4",
+          "rule": ".crumb",
+          "line": 12
+        },
+        {
+          "property": "transform",
+          "value": "translate(0, 0) scale(1)",
+          "rule": "0%",
+          "line": 17
+        },
+        {
+          "property": "opacity",
+          "value": "0.95",
+          "rule": "0%",
+          "line": 18
+        },
+        {
+          "property": "transform",
+          "value": "translate(var(--tx, 0px), var(--ty, 80px)) scale(0.6)",
+          "rule": "100%",
+          "line": 21
+        },
+        {
+          "property": "opacity",
+          "value": "0",
+          "rule": "100%",
+          "line": 22
+        },
+        {
+          "property": "filter",
+          "value": "blur(0.5px)",
+          "rule": "100%",
+          "line": 23
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/css/components/layout.css",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 121,
+        "column": 1
+      }
+    },
+    "ast_structure": {
+      "total_lines": 121,
+      "selector_count": 12,
+      "property_count": 77,
+      "selectors": [
+        {
+          "selector": ".footer",
+          "line": 1
+        },
+        {
+          "selector": ".header",
+          "line": 11
+        },
+        {
+          "selector": ".header-badge",
+          "line": 21
+        },
+        {
+          "selector": ".daily-notice",
+          "line": 29
+        },
+        {
+          "selector": ".daily-notice.visible",
+          "line": 49
+        },
+        {
+          "selector": ".footer-link",
+          "line": 54
+        },
+        {
+          "selector": ".footer-link:hover",
+          "line": 61
+        },
+        {
+          "selector": ".stage",
+          "line": 65
+        },
+        {
+          "selector": ".cookie-shadow",
+          "line": 77
+        },
+        {
+          "selector": ".cookie-shadow.broken",
+          "line": 96
+        },
+        {
+          "selector": ".vignette-overlay",
+          "line": 101
+        },
+        {
+          "selector": ".cookie-zone",
+          "line": 115
+        }
+      ],
+      "properties": [
+        {
+          "property": "position",
+          "value": "fixed",
+          "rule": ".footer",
+          "line": 2
+        },
+        {
+          "property": "bottom",
+          "value": "20px",
+          "rule": ".footer",
+          "line": 3
+        },
+        {
+          "property": "left",
+          "value": "0",
+          "rule": ".footer",
+          "line": 4
+        },
+        {
+          "property": "right",
+          "value": "0",
+          "rule": ".footer",
+          "line": 5
+        },
+        {
+          "property": "text-align",
+          "value": "center",
+          "rule": ".footer",
+          "line": 6
+        },
+        {
+          "property": "padding",
+          "value": "10px",
+          "rule": ".footer",
+          "line": 7
+        },
+        {
+          "property": "z-index",
+          "value": "100",
+          "rule": ".footer",
+          "line": 8
+        },
+        {
+          "property": "position",
+          "value": "fixed",
+          "rule": ".header",
+          "line": 12
+        },
+        {
+          "property": "top",
+          "value": "20px",
+          "rule": ".header",
+          "line": 13
+        },
+        {
+          "property": "left",
+          "value": "0",
+          "rule": ".header",
+          "line": 14
+        },
+        {
+          "property": "right",
+          "value": "0",
+          "rule": ".header",
+          "line": 15
+        },
+        {
+          "property": "text-align",
+          "value": "center",
+          "rule": ".header",
+          "line": 16
+        },
+        {
+          "property": "padding",
+          "value": "6px 10px",
+          "rule": ".header",
+          "line": 17
+        },
+        {
+          "property": "z-index",
+          "value": "120",
+          "rule": ".header",
+          "line": 18
+        },
+        {
+          "property": "display",
+          "value": "inline-block",
+          "rule": ".header-badge",
+          "line": 22
+        },
+        {
+          "property": "color",
+          "value": "#c4c4c4; /* discreto, um pouco mais escuro que o rodap\u00e9 */",
+          "rule": ".header-badge",
+          "line": 23
+        },
+        {
+          "property": "font-weight",
+          "value": "400",
+          "rule": ".header-badge",
+          "line": 24
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.01em",
+          "rule": ".header-badge",
+          "line": 25
+        },
+        {
+          "property": "font-size",
+          "value": "0.875rem; /* Increased to meet 12px minimum (14px) */",
+          "rule": ".header-badge",
+          "line": 26
+        },
+        {
+          "property": "position",
+          "value": "fixed",
+          "rule": ".daily-notice",
+          "line": 30
+        },
+        {
+          "property": "bottom",
+          "value": "68px",
+          "rule": ".daily-notice",
+          "line": 31
+        },
+        {
+          "property": "left",
+          "value": "50%",
+          "rule": ".daily-notice",
+          "line": 32
+        },
+        {
+          "property": "transform",
+          "value": "translate(-50%, 12px)",
+          "rule": ".daily-notice",
+          "line": 33
+        },
+        {
+          "property": "color",
+          "value": "#b5b5b5",
+          "rule": ".daily-notice",
+          "line": 34
+        },
+        {
+          "property": "padding",
+          "value": "6px 10px",
+          "rule": ".daily-notice",
+          "line": 35
+        },
+        {
+          "property": "font-size",
+          "value": "0.875rem; /* Increased from 0.7rem to meet 12px minimum (14px) */",
+          "rule": ".daily-notice",
+          "line": 36
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.01em",
+          "rule": ".daily-notice",
+          "line": 37
+        },
+        {
+          "property": "white-space",
+          "value": "pre-line",
+          "rule": ".daily-notice",
+          "line": 38
+        },
+        {
+          "property": "text-align",
+          "value": "center",
+          "rule": ".daily-notice",
+          "line": 39
+        },
+        {
+          "property": "font-style",
+          "value": "italic",
+          "rule": ".daily-notice",
+          "line": 40
+        },
+        {
+          "property": "width",
+          "value": "calc(100% - 32px)",
+          "rule": ".daily-notice",
+          "line": 41
+        },
+        {
+          "property": "max-width",
+          "value": "440px",
+          "rule": ".daily-notice",
+          "line": 42
+        },
+        {
+          "property": "opacity",
+          "value": "0",
+          "rule": ".daily-notice",
+          "line": 43
+        },
+        {
+          "property": "transition",
+          "value": "opacity 200ms ease, transform 200ms ease",
+          "rule": ".daily-notice",
+          "line": 44
+        },
+        {
+          "property": "pointer-events",
+          "value": "none",
+          "rule": ".daily-notice",
+          "line": 45
+        },
+        {
+          "property": "z-index",
+          "value": "140",
+          "rule": ".daily-notice",
+          "line": 46
+        },
+        {
+          "property": "opacity",
+          "value": "1",
+          "rule": ".daily-notice.visible",
+          "line": 50
+        },
+        {
+          "property": "transform",
+          "value": "translate(-50%, 0)",
+          "rule": ".daily-notice.visible",
+          "line": 51
+        },
+        {
+          "property": "color",
+          "value": "#b5b5b5",
+          "rule": ".footer-link",
+          "line": 55
+        },
+        {
+          "property": "text-decoration",
+          "value": "none",
+          "rule": ".footer-link",
+          "line": 56
+        },
+        {
+          "property": "font-size",
+          "value": "0.875rem; /* Increased to meet 12px minimum (14px) */",
+          "rule": ".footer-link",
+          "line": 57
+        },
+        {
+          "property": "transition",
+          "value": "color 0.2s ease",
+          "rule": ".footer-link",
+          "line": 58
+        },
+        {
+          "property": "color",
+          "value": "#9a9a9a",
+          "rule": ".footer-link:hover",
+          "line": 62
+        },
+        {
+          "property": "position",
+          "value": "relative",
+          "rule": ".stage",
+          "line": 66
+        },
+        {
+          "property": "width",
+          "value": "100vw",
+          "rule": ".stage",
+          "line": 67
+        },
+        {
+          "property": "height",
+          "value": "100vh",
+          "rule": ".stage",
+          "line": 68
+        },
+        {
+          "property": "text-align",
+          "value": "center",
+          "rule": ".stage",
+          "line": 69
+        },
+        {
+          "property": "display",
+          "value": "grid",
+          "rule": ".stage",
+          "line": 70
+        },
+        {
+          "property": "place-items",
+          "value": "center",
+          "rule": ".stage",
+          "line": 71
+        },
+        {
+          "property": "overflow",
+          "value": "hidden",
+          "rule": ".stage",
+          "line": 72
+        },
+        {
+          "property": "perspective",
+          "value": "1200px",
+          "rule": ".stage",
+          "line": 73
+        },
+        {
+          "property": "position",
+          "value": "absolute",
+          "rule": ".cookie-shadow",
+          "line": 78
+        },
+        {
+          "property": "width",
+          "value": "clamp(180px, 22vw, 260px)",
+          "rule": ".cookie-shadow",
+          "line": 79
+        },
+        {
+          "property": "height",
+          "value": "clamp(18px, 5vw, 34px)",
+          "rule": ".cookie-shadow",
+          "line": 80
+        },
+        {
+          "property": "left",
+          "value": "50%",
+          "rule": ".cookie-shadow",
+          "line": 81
+        },
+        {
+          "property": "top",
+          "value": "50%",
+          "rule": ".cookie-shadow",
+          "line": 82
+        },
+        {
+          "property": "transform",
+          "value": "translate(-50%, 68%)",
+          "rule": ".cookie-shadow",
+          "line": 83
+        },
+        {
+          "property": "pointer-events",
+          "value": "none",
+          "rule": ".cookie-shadow",
+          "line": 84
+        },
+        {
+          "property": "background",
+          "value": "radial-gradient(ellipse at center,",
+          "rule": ".cookie-shadow",
+          "line": 85
+        },
+        {
+          "property": "filter",
+          "value": "blur(14px)",
+          "rule": ".cookie-shadow",
+          "line": 90
+        },
+        {
+          "property": "opacity",
+          "value": "0.24",
+          "rule": ".cookie-shadow",
+          "line": 91
+        },
+        {
+          "property": "z-index",
+          "value": "1",
+          "rule": ".cookie-shadow",
+          "line": 92
+        },
+        {
+          "property": "transform",
+          "value": "translate(-50%, 68%) scale(0.95)",
+          "rule": ".cookie-shadow.broken",
+          "line": 97
+        },
+        {
+          "property": "height",
+          "value": "25px",
+          "rule": ".cookie-shadow.broken",
+          "line": 98
+        },
+        {
+          "property": "position",
+          "value": "absolute",
+          "rule": ".vignette-overlay",
+          "line": 102
+        },
+        {
+          "property": "top",
+          "value": "0",
+          "rule": ".vignette-overlay",
+          "line": 103
+        },
+        {
+          "property": "left",
+          "value": "0",
+          "rule": ".vignette-overlay",
+          "line": 104
+        },
+        {
+          "property": "width",
+          "value": "100%",
+          "rule": ".vignette-overlay",
+          "line": 105
+        },
+        {
+          "property": "height",
+          "value": "100%",
+          "rule": ".vignette-overlay",
+          "line": 106
+        },
+        {
+          "property": "pointer-events",
+          "value": "none",
+          "rule": ".vignette-overlay",
+          "line": 107
+        },
+        {
+          "property": "z-index",
+          "value": "1",
+          "rule": ".vignette-overlay",
+          "line": 108
+        },
+        {
+          "property": "background",
+          "value": "radial-gradient(ellipse at center,",
+          "rule": ".vignette-overlay",
+          "line": 109
+        },
+        {
+          "property": "position",
+          "value": "static",
+          "rule": ".cookie-zone",
+          "line": 116
+        },
+        {
+          "property": "display",
+          "value": "inline-flex",
+          "rule": ".cookie-zone",
+          "line": 117
+        },
+        {
+          "property": "align-items",
+          "value": "center",
+          "rule": ".cookie-zone",
+          "line": 118
+        },
+        {
+          "property": "justify-content",
+          "value": "center",
+          "rule": ".cookie-zone",
+          "line": 119
+        },
+        {
+          "property": "min-height",
+          "value": "360px",
+          "rule": ".cookie-zone",
+          "line": 120
+        }
+      ]
+    }
+  },
+  {
+    "file": "/Users/bolivaralencastro/biscoito-da-sorte/src/css/components/fortune-strip.css",
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 106,
+        "column": 0
+      }
+    },
+    "ast_structure": {
+      "total_lines": 106,
+      "selector_count": 13,
+      "property_count": 67,
+      "selectors": [
+        {
+          "selector": ".fortune-strip",
+          "line": 1
+        },
+        {
+          "selector": ".fortune-strip.revealed",
+          "line": 23
+        },
+        {
+          "selector": ".fortune-strip.flipped",
+          "line": 29
+        },
+        {
+          "selector": ".fortune-strip:active",
+          "line": 33
+        },
+        {
+          "selector": ".fortune-strip::before",
+          "line": 37
+        },
+        {
+          "selector": ".fortune-strip::after",
+          "line": 48
+        },
+        {
+          "selector": "#fortuneText",
+          "line": 59
+        },
+        {
+          "selector": "#luckyNumbers",
+          "line": 71
+        },
+        {
+          "selector": ".fortune-inner",
+          "line": 79
+        },
+        {
+          "selector": ".face",
+          "line": 87
+        },
+        {
+          "selector": ".face.back",
+          "line": 97
+        },
+        {
+          "selector": "@media (max-width: 520px)",
+          "line": 101
+        },
+        {
+          "selector": ".fortune-strip",
+          "line": 102
+        }
+      ],
+      "properties": [
+        {
+          "property": "position",
+          "value": "absolute",
+          "rule": ".fortune-strip",
+          "line": 2
+        },
+        {
+          "property": "left",
+          "value": "50%",
+          "rule": ".fortune-strip",
+          "line": 3
+        },
+        {
+          "property": "top",
+          "value": "50%",
+          "rule": ".fortune-strip",
+          "line": 4
+        },
+        {
+          "property": "--flip-shade",
+          "value": "0",
+          "rule": ".fortune-strip",
+          "line": 5
+        },
+        {
+          "property": "transform",
+          "value": "translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(0.96) skewX(var(--skew, -0.6deg))",
+          "rule": ".fortune-strip",
+          "line": 6
+        },
+        {
+          "property": "background",
+          "value": "linear-gradient(120deg, rgba(0,0,0,0.02), transparent 26%, rgba(0,0,0,0.015) 46%, transparent 70%), var(--paper)",
+          "rule": ".fortune-strip",
+          "line": 7
+        },
+        {
+          "property": "box-shadow",
+          "value": "0 8px 18px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.16)",
+          "rule": ".fortune-strip",
+          "line": 8
+        },
+        {
+          "property": "padding",
+          "value": "10px 22px",
+          "rule": ".fortune-strip",
+          "line": 9
+        },
+        {
+          "property": "width",
+          "value": "clamp(240px, 88vw, 340px)",
+          "rule": ".fortune-strip",
+          "line": 10
+        },
+        {
+          "property": "min-height",
+          "value": "62px",
+          "rule": ".fortune-strip",
+          "line": 11
+        },
+        {
+          "property": "opacity",
+          "value": "0",
+          "rule": ".fortune-strip",
+          "line": 12
+        },
+        {
+          "property": "pointer-events",
+          "value": "none",
+          "rule": ".fortune-strip",
+          "line": 13
+        },
+        {
+          "property": "transition",
+          "value": "opacity 280ms ease, transform 280ms ease",
+          "rule": ".fortune-strip",
+          "line": 14
+        },
+        {
+          "property": "perspective",
+          "value": "900px",
+          "rule": ".fortune-strip",
+          "line": 15
+        },
+        {
+          "property": "transform-style",
+          "value": "preserve-3d",
+          "rule": ".fortune-strip",
+          "line": 16
+        },
+        {
+          "property": "cursor",
+          "value": "grab",
+          "rule": ".fortune-strip",
+          "line": 17
+        },
+        {
+          "property": "user-select",
+          "value": "none",
+          "rule": ".fortune-strip",
+          "line": 18
+        },
+        {
+          "property": "touch-action",
+          "value": "none; /* permite arrastar no mobile sem conflito com scroll */",
+          "rule": ".fortune-strip",
+          "line": 19
+        },
+        {
+          "property": "z-index",
+          "value": "6; /* fica acima do biscoito e da sombra */",
+          "rule": ".fortune-strip",
+          "line": 20
+        },
+        {
+          "property": "opacity",
+          "value": "1",
+          "rule": ".fortune-strip.revealed",
+          "line": 24
+        },
+        {
+          "property": "transform",
+          "value": "translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(1) skewX(var(--skew, -0.6deg))",
+          "rule": ".fortune-strip.revealed",
+          "line": 25
+        },
+        {
+          "property": "pointer-events",
+          "value": "auto",
+          "rule": ".fortune-strip.revealed",
+          "line": 26
+        },
+        {
+          "property": "transform",
+          "value": "translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(1) skewX(var(--skew, -0.6deg)) rotateY(180deg)",
+          "rule": ".fortune-strip.flipped",
+          "line": 30
+        },
+        {
+          "property": "cursor",
+          "value": "grabbing",
+          "rule": ".fortune-strip:active",
+          "line": 34
+        },
+        {
+          "property": "content",
+          "value": "\"\"",
+          "rule": ".fortune-strip::before",
+          "line": 38
+        },
+        {
+          "property": "position",
+          "value": "absolute",
+          "rule": ".fortune-strip::before",
+          "line": 39
+        },
+        {
+          "property": "inset",
+          "value": "6px",
+          "rule": ".fortune-strip::before",
+          "line": 40
+        },
+        {
+          "property": "background",
+          "value": "radial-gradient(ellipse at 30% 30%, rgba(0,0,0,0.05), transparent 50%),",
+          "rule": ".fortune-strip::before",
+          "line": 41
+        },
+        {
+          "property": "opacity",
+          "value": "0.2",
+          "rule": ".fortune-strip::before",
+          "line": 43
+        },
+        {
+          "property": "mix-blend-mode",
+          "value": "multiply",
+          "rule": ".fortune-strip::before",
+          "line": 44
+        },
+        {
+          "property": "pointer-events",
+          "value": "none",
+          "rule": ".fortune-strip::before",
+          "line": 45
+        },
+        {
+          "property": "content",
+          "value": "\"\"",
+          "rule": ".fortune-strip::after",
+          "line": 49
+        },
+        {
+          "property": "position",
+          "value": "absolute",
+          "rule": ".fortune-strip::after",
+          "line": 50
+        },
+        {
+          "property": "inset",
+          "value": "0",
+          "rule": ".fortune-strip::after",
+          "line": 51
+        },
+        {
+          "property": "background",
+          "value": "linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.12) 100%)",
+          "rule": ".fortune-strip::after",
+          "line": 52
+        },
+        {
+          "property": "opacity",
+          "value": "var(--flip-shade, 0)",
+          "rule": ".fortune-strip::after",
+          "line": 53
+        },
+        {
+          "property": "mix-blend-mode",
+          "value": "multiply",
+          "rule": ".fortune-strip::after",
+          "line": 54
+        },
+        {
+          "property": "pointer-events",
+          "value": "none",
+          "rule": ".fortune-strip::after",
+          "line": 55
+        },
+        {
+          "property": "transition",
+          "value": "opacity 220ms ease",
+          "rule": ".fortune-strip::after",
+          "line": 56
+        },
+        {
+          "property": "display",
+          "value": "block",
+          "rule": "#fortuneText",
+          "line": 60
+        },
+        {
+          "property": "width",
+          "value": "100%",
+          "rule": "#fortuneText",
+          "line": 61
+        },
+        {
+          "property": "max-width",
+          "value": "none",
+          "rule": "#fortuneText",
+          "line": 62
+        },
+        {
+          "property": "font-size",
+          "value": "0.875rem; /* Increased to meet 12px minimum (14px) */",
+          "rule": "#fortuneText",
+          "line": 63
+        },
+        {
+          "property": "line-height",
+          "value": "1.35",
+          "rule": "#fortuneText",
+          "line": 64
+        },
+        {
+          "property": "text-align",
+          "value": "center",
+          "rule": "#fortuneText",
+          "line": 65
+        },
+        {
+          "property": "text-wrap",
+          "value": "balance",
+          "rule": "#fortuneText",
+          "line": 66
+        },
+        {
+          "property": "word-break",
+          "value": "break-word",
+          "rule": "#fortuneText",
+          "line": 67
+        },
+        {
+          "property": "max-width",
+          "value": "280px",
+          "rule": "#fortuneText",
+          "line": 68
+        },
+        {
+          "property": "font-size",
+          "value": "0.875rem; /* Increased to meet 12px minimum (14px) */",
+          "rule": "#luckyNumbers",
+          "line": 72
+        },
+        {
+          "property": "line-height",
+          "value": "1.35",
+          "rule": "#luckyNumbers",
+          "line": 73
+        },
+        {
+          "property": "text-align",
+          "value": "center",
+          "rule": "#luckyNumbers",
+          "line": 74
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.02em",
+          "rule": "#luckyNumbers",
+          "line": 75
+        },
+        {
+          "property": "color",
+          "value": "var(--numbers)",
+          "rule": "#luckyNumbers",
+          "line": 76
+        },
+        {
+          "property": "position",
+          "value": "relative",
+          "rule": ".fortune-inner",
+          "line": 80
+        },
+        {
+          "property": "width",
+          "value": "100%",
+          "rule": ".fortune-inner",
+          "line": 81
+        },
+        {
+          "property": "min-height",
+          "value": "54px",
+          "rule": ".fortune-inner",
+          "line": 82
+        },
+        {
+          "property": "transform-style",
+          "value": "preserve-3d",
+          "rule": ".fortune-inner",
+          "line": 83
+        },
+        {
+          "property": "transition",
+          "value": "none",
+          "rule": ".fortune-inner",
+          "line": 84
+        },
+        {
+          "property": "position",
+          "value": "absolute",
+          "rule": ".face",
+          "line": 88
+        },
+        {
+          "property": "inset",
+          "value": "0",
+          "rule": ".face",
+          "line": 89
+        },
+        {
+          "property": "display",
+          "value": "flex",
+          "rule": ".face",
+          "line": 90
+        },
+        {
+          "property": "align-items",
+          "value": "center",
+          "rule": ".face",
+          "line": 91
+        },
+        {
+          "property": "justify-content",
+          "value": "center",
+          "rule": ".face",
+          "line": 92
+        },
+        {
+          "property": "padding",
+          "value": "0 4px",
+          "rule": ".face",
+          "line": 93
+        },
+        {
+          "property": "backface-visibility",
+          "value": "hidden",
+          "rule": ".face",
+          "line": 94
+        },
+        {
+          "property": "transform",
+          "value": "rotateY(180deg)",
+          "rule": ".face.back",
+          "line": 98
+        },
+        {
+          "property": "width",
+          "value": "min(92vw, 320px)",
+          "rule": ".fortune-strip",
+          "line": 103
+        }
+      ]
+    }
+  }
+]

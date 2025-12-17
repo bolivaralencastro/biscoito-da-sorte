@@ -12,7 +12,6 @@ export const IMAGE_BASES = {
 
 export const EMPTY_DATA_URI = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
-
 export const BASE_FORTUNES = [
   "Hoje você encontra respostas no silêncio.",
   "A sorte favorece quem se movimenta agora.",

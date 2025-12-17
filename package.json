@@ -1,0 +1,26 @@
+{
+  "name": "biscoito-da-sorte",
+  "version": "1.0.0",
+  "description": "Um biscoito da sorte interativo: toque para quebrar, leia a tirinha, vire para ver números da sorte e arraste para reposicionar. Todo o conteúdo roda no navegador, sem build ou servidor.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolivaralencastro/biscoito-da-sorte.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bolivaralencastro/biscoito-da-sorte/issues"
+  },
+  "homepage": "https://github.com/bolivaralencastro/biscoito-da-sorte#readme",
+  "dependencies": {
+    "@microsoft/clarity": "^1.0.2"
+  }
+}

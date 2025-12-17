@@ -23,7 +23,7 @@
     color: #c4c4c4; /* discreto, um pouco mais escuro que o rodapé */
     font-weight: 400;
     letter-spacing: 0.01em;
-    font-size: 0.92rem;
+    font-size: 0.875rem; /* Increased to meet 12px minimum (14px) */
 }
 
 .daily-notice {
@@ -33,7 +33,7 @@
     transform: translate(-50%, 12px);
     color: #b5b5b5;
     padding: 6px 10px;
-    font-size: 0.7rem;
+    font-size: 0.875rem; /* Increased from 0.7rem to meet 12px minimum (14px) */
     letter-spacing: 0.01em;
     white-space: pre-line;
     text-align: center;
@@ -54,7 +54,7 @@
 .footer-link {
     color: #b5b5b5;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.875rem; /* Increased to meet 12px minimum (14px) */
     transition: color 0.2s ease;
 }
 
