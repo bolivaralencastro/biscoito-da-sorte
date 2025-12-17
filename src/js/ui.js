@@ -36,7 +36,6 @@ let dailyNotice = null;
 let cookieSource = null;
 let shareCta = null;
 let shareButton = null;
-let copyLinkButton = null;
 
 // === Init & setup ============================================================
 export async function initUI() {
@@ -51,7 +50,6 @@ export async function initUI() {
   dailyNotice = document.getElementById('dailyNotice');
   shareCta = document.getElementById('shareCta');
   shareButton = document.getElementById('shareButton');
-  copyLinkButton = document.getElementById('copyLinkButton');
 
   // Tirinha focável/ARIA para teclado (evita remoções acidentais em rewrites)
   if (fortuneStrip) {
@@ -103,10 +101,6 @@ function setupEventListeners() {
 
   if (shareButton) {
     shareButton.addEventListener('click', handleShareClick);
-  }
-
-  if (copyLinkButton) {
-    copyLinkButton.addEventListener('click', handleCopyLink);
   }
 
   window.addEventListener('resize', handleViewportChange);
@@ -410,6 +404,7 @@ function updateShareCtaVisibility() {
   shareCta.hidden = !isClean;
   shareCta.style.display = isClean ? 'flex' : 'none';
   shareButton.disabled = !isClean;
+  shareButton.hidden = !isClean;
 }
 
 // Sync fortune strip from data
@@ -640,16 +635,6 @@ async function handleShareClick() {
       console.warn('Falha ao compartilhar via Web Share API:', error);
     }
   }
-
-  await copyShareLink(payload);
-}
-
-async function handleCopyLink() {
-  if (cookieState !== DEFAULT_COOKIE_STATE.clean) {
-    showDailyLockNotice('Limpe os farelos para liberar o compartilhamento.');
-    return;
-  }
-  const payload = buildSharePayload();
 
   await copyShareLink(payload);
 }
