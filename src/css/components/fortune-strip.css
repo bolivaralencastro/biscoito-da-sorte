@@ -27,7 +27,8 @@
 }
 
 .fortune-strip.flipped {
-    transform: translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(1) skewX(var(--skew, -0.6deg)) rotateY(180deg);
+    transform: translate(-50%, -50%) rotate(var(--tilt, -2deg)) scaleX(1) skewX(var(--skew, -0.6deg));
+    --flip-shade: 0.12;
 }
 
 .fortune-strip:active {
@@ -81,7 +82,12 @@
     width: 100%;
     min-height: 54px;
     transform-style: preserve-3d;
-    transition: none;
+    transform: rotateY(0deg);
+    transition: transform 220ms ease;
+}
+
+.fortune-strip.flipped .fortune-inner {
+    transform: rotateY(180deg);
 }
 
 .face {

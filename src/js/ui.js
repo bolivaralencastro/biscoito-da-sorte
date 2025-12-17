@@ -165,19 +165,24 @@ async function handleCookieClick() {
 
 // Handle fortune strip click
 function handleFortuneStripClick() {
-  if (fortuneStrip && dayData.state !== 'intact') {
-    fortuneStrip.classList.toggle('flipped');
-    if (fortuneInner) {
-      fortuneInner.style.transform = fortuneStrip.classList.contains('flipped') ? 'rotateY(180deg)' : 'rotateY(0deg)';
-    }
-    fortuneStrip.setAttribute('aria-pressed', fortuneStrip.classList.contains('flipped') ? 'true' : 'false');
-  }
+  if (!fortuneStrip || dayData.state === 'intact' || !fortuneStrip.classList.contains('revealed')) return;
+  const isFlipped = !fortuneStrip.classList.contains('flipped');
+  setFortuneStripFlipped(isFlipped);
 }
 
 function handleFortuneStripKeydown(event) {
   if (event.key !== 'Enter' && event.key !== ' ') return;
   event.preventDefault();
   handleFortuneStripClick();
+}
+
+function setFortuneStripFlipped(isFlipped) {
+  if (!fortuneStrip) return;
+  fortuneStrip.classList.toggle('flipped', isFlipped);
+  fortuneStrip.setAttribute('aria-pressed', isFlipped ? 'true' : 'false');
+  if (fortuneInner) {
+    fortuneInner.style.removeProperty('transform');
+  }
 }
 
 // === Drag handling ===========================================================
@@ -429,7 +434,8 @@ function revealFortune(options = {}) {
 
   // Força reflow para reiniciar a animação da tirinha
   void fortuneStrip.offsetWidth;
-  fortuneInner.style.transform = 'rotateY(0deg)';
+  // Apenas reseta a orientação visual; não seleciona nova fortuna nem altera o conteúdo já persistido
+  setFortuneStripFlipped(false);
   fortuneStrip.classList.add('revealed');
   if (!skipAnimation) {
     animateReveal(fortuneStrip);
