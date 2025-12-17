@@ -6,6 +6,7 @@ Um biscoito da sorte interativo: toque para quebrar, leia a tirinha, vire para v
 - Baixe/clonar e abra `index.html` no navegador.
 - Clique no biscoito para quebrar; um som curto toca e migalhas caem.
 - Clique na tirinha para virar entre frase e números; arraste para mover.
+- Após limpar os farelos, aparece um botão central "Envie um biscoito!" em preto e branco; ele usa Web Share API e, se não houver suporte, oferece copiar link ou atalhos (WhatsApp, X, Telegram) com convite padrão.
 
 ## O que há aqui
 - HTML/CSS/JS vanilla com módulos ES6, sem dependências.
@@ -15,6 +16,7 @@ Um biscoito da sorte interativo: toque para quebrar, leia a tirinha, vire para v
 - Assets: imagens em `assets/images/` (ex.: `assets/images/biscoito-inteiro/biscoito-inteiro.png` e `assets/images/biscoito-quebrado/biscoito-quebrado.png`) e estilos em `src/css/`.
 - **Vinheta suave**: Efeito de foco sutil com gradiente radial quase branco.
 - **OpenGraph**: Meta tags para compartilhamento rico em redes sociais.
+- **Compartilhamento nativo + fallback**: Web Share API após limpar os farelos; fallback com copiar link e atalhos em redes.
 - **Favicon**: Ícone de biscoito da sorte em SVG.
 
 ## Personalização rápida

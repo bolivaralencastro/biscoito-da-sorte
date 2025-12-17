@@ -3,6 +3,7 @@
 ## Componentes principais
 - Cookie (`#cookieImage`): estados `intact`, `broken`, `crumbs`, `clean`; classes `broken`, `crumbled`, `cleaned` ajustam visual/sombra.
 - Tirinha (`#fortuneStrip`, `.fortune-inner`, `#fortuneText`, `#luckyNumbers`): revela após quebrar; flip 3D (`.flipped`), animação de reveal, arraste com posição persistida.
+- Compartilhamento (`#shareCta`/`#shareButton`): aparece somente em `clean`, centralizado; botão preto e branco com borda arredondada. Primeiro tenta Web Share API; fallback mostra copiar link + atalhos (WhatsApp, X, Telegram) com texto padrão e URL canônica.
 - Mensagens diárias (`#dailyNotice`): exibe mensagens por estado (initial/refresh), bloqueio de múltiplas quebras no mesmo dia.
 - Sombra (`.cookie-shadow`) e vinheta (`.vignette-overlay`): efeitos de profundidade/foco.
 - Migalhas (`.crumb`): geradas ao quebrar, animadas e removidas.
@@ -12,6 +13,7 @@
 2. `broken` → novo clique: vira `crumbs` (mastigar).
 3. `crumbs` → novo clique: vira `clean` (limpo).
 4. `clean`: some cookie/ sombra; tirinha permanece arrastável.
+   - CTA central "Envie um biscoito!" fica visível e habilitado; fallback só abre se o share nativo falhar ou não existir.
 
 ## Interações
 - Clique no biscoito: avança estado; bloqueio diário impede reset para intacto.

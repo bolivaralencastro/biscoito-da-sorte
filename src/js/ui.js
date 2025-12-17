@@ -6,7 +6,7 @@ import { getRandomFortune, generateLuckyNumbers } from './fortunes.js';
 import { getRandomMessageForState, getMessagesForState } from './messages.js';
 import { loadDayData, persistDayData, createDefaultDayData } from './storage.js';
 import { getCookieVariantById, getRandomCookieVariant } from './cookies.js';
-import { IMAGE_BASES, EMPTY_DATA_URI, DEFAULT_COOKIE_STATE } from './config.js';
+import { IMAGE_BASES, EMPTY_DATA_URI, DEFAULT_COOKIE_STATE, SHARE_URL, SHARE_TITLE, SHARE_BASE_TEXT } from './config.js';
 
 // === Globals & DOM refs ======================================================
 
@@ -34,6 +34,13 @@ let cookieZone = null;
 let fortuneInner = null;
 let dailyNotice = null;
 let cookieSource = null;
+let shareCta = null;
+let shareButton = null;
+let shareFallback = null;
+let copyLinkButton = null;
+let whatsappShare = null;
+let xShare = null;
+let telegramShare = null;
 
 // === Init & setup ============================================================
 export async function initUI() {
@@ -46,6 +53,13 @@ export async function initUI() {
   cookieZone = document.querySelector('.cookie-zone');
   fortuneInner = document.querySelector('.fortune-inner');
   dailyNotice = document.getElementById('dailyNotice');
+  shareCta = document.getElementById('shareCta');
+  shareButton = document.getElementById('shareButton');
+  shareFallback = document.getElementById('shareFallback');
+  copyLinkButton = document.getElementById('copyLinkButton');
+  whatsappShare = document.getElementById('whatsappShare');
+  xShare = document.getElementById('xShare');
+  telegramShare = document.getElementById('telegramShare');
 
   // Tirinha focável/ARIA para teclado (evita remoções acidentais em rewrites)
   if (fortuneStrip) {
@@ -93,6 +107,14 @@ function setupEventListeners() {
     fortuneStrip.addEventListener('click', handleFortuneStripClick);
     fortuneStrip.addEventListener('keydown', handleFortuneStripKeydown);
     setupFortuneStripDrag();
+  }
+
+  if (shareButton) {
+    shareButton.addEventListener('click', handleShareClick);
+  }
+
+  if (copyLinkButton) {
+    copyLinkButton.addEventListener('click', handleCopyLink);
   }
 
   window.addEventListener('resize', handleViewportChange);
@@ -366,6 +388,7 @@ function applyStateVisuals(state) {
   }
   updateCookieImage();
   updateShadow();
+  updateShareCtaVisibility();
 }
 
 // Update shadow based on cookie state
@@ -386,6 +409,16 @@ function updateShadow() {
   } else if (cookieState === DEFAULT_COOKIE_STATE.clean) {
     // Hide shadow for clean state
     shadow.style.display = 'none';
+  }
+}
+
+function updateShareCtaVisibility() {
+  if (!shareCta || !shareButton) return;
+  const isClean = cookieState === DEFAULT_COOKIE_STATE.clean;
+  shareCta.hidden = !isClean;
+  shareButton.disabled = !isClean;
+  if (!isClean && shareFallback) {
+    shareFallback.hidden = true;
   }
 }
 
@@ -558,5 +591,83 @@ async function showCurrentMessage() {
       dayData.messageStage = 'refresh';
       persistDayData(dayData);
     }
+  }
+}
+
+// === Sharing ================================================================
+function buildSharePayload() {
+  return {
+    title: SHARE_TITLE,
+    text: SHARE_BASE_TEXT,
+    url: SHARE_URL
+  };
+}
+
+async function handleShareClick() {
+  if (!dayData) return;
+  const payload = buildSharePayload();
+
+  if (navigator.share) {
+    try {
+      await navigator.share(payload);
+      showDailyLockNotice('Biscoito enviado! Compartilhe sempre que quiser.');
+      return;
+    } catch (error) {
+      if (error?.name === 'AbortError') return;
+      console.warn('Falha ao compartilhar via Web Share API:', error);
+    }
+  }
+
+  showShareFallback(payload);
+}
+
+function showShareFallback(payload) {
+  if (!shareFallback) return;
+  updateFallbackLinks(payload);
+  shareFallback.hidden = false;
+  showDailyLockNotice('Escolha como enviar seu biscoito.');
+}
+
+function updateFallbackLinks(payload) {
+  const combined = `${payload.text}\n${payload.url}`;
+  const encodedCombined = encodeURIComponent(combined);
+  const encodedText = encodeURIComponent(payload.text);
+  const encodedUrl = encodeURIComponent(payload.url);
+
+  if (whatsappShare) {
+    whatsappShare.href = `https://wa.me/?text=${encodedCombined}`;
+  }
+
+  if (xShare) {
+    xShare.href = `https://twitter.com/intent/tweet?text=${encodedCombined}`;
+  }
+
+  if (telegramShare) {
+    telegramShare.href = `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`;
+  }
+}
+
+async function handleCopyLink() {
+  const payload = buildSharePayload();
+  const textToCopy = `${payload.text}\n${payload.url}`;
+
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(textToCopy);
+    } else {
+      const textarea = document.createElement('textarea');
+      textarea.value = textToCopy;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'absolute';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+    showDailyLockNotice('Link copiado! Agora é só colar onde quiser.');
+  } catch (error) {
+    console.error('Não foi possível copiar o link:', error);
+    showDailyLockNotice('Não foi possível copiar agora. Tente novamente.');
   }
 }
