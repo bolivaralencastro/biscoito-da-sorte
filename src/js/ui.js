@@ -36,7 +36,6 @@ let dailyNotice = null;
 let cookieSource = null;
 let shareCta = null;
 let shareButton = null;
-let shareFallback = null;
 let copyLinkButton = null;
 
 // === Init & setup ============================================================
@@ -52,7 +51,6 @@ export async function initUI() {
   dailyNotice = document.getElementById('dailyNotice');
   shareCta = document.getElementById('shareCta');
   shareButton = document.getElementById('shareButton');
-  shareFallback = document.getElementById('shareFallback');
   copyLinkButton = document.getElementById('copyLinkButton');
 
   // Tirinha focável/ARIA para teclado (evita remoções acidentais em rewrites)
@@ -412,11 +410,6 @@ function updateShareCtaVisibility() {
   shareCta.hidden = !isClean;
   shareCta.style.display = isClean ? 'flex' : 'none';
   shareButton.disabled = !isClean;
-  if (!isClean) {
-    hideShareFallback();
-  } else {
-    shareButton.hidden = false;
-  }
 }
 
 // Sync fortune strip from data
@@ -600,50 +593,12 @@ function buildSharePayload() {
   };
 }
 
-async function handleShareClick() {
-  if (!dayData) return;
-  if (cookieState !== DEFAULT_COOKIE_STATE.clean) {
-    showDailyLockNotice('Limpe os farelos para liberar o compartilhamento.');
-    return;
-  }
-  const payload = buildSharePayload();
-
-  if (navigator.share) {
-    try {
-      await navigator.share(payload);
-      showDailyLockNotice('Biscoito enviado! Compartilhe sempre que quiser.');
-      return;
-    } catch (error) {
-      if (error?.name === 'AbortError') return;
-      console.warn('Falha ao compartilhar via Web Share API:', error);
-    }
-  }
-
-  showShareFallback();
+function isMobileDevice() {
+  if (typeof navigator === 'undefined') return false;
+  return /Android|iPhone|iPad|iPod|Mobi|Mobile/i.test(navigator.userAgent);
 }
 
-function hideShareFallback() {
-  if (shareFallback) {
-    shareFallback.hidden = true;
-  }
-  if (shareButton) {
-    shareButton.hidden = false;
-  }
-}
-
-function showShareFallback() {
-  if (!shareFallback || !shareButton) return;
-  shareButton.hidden = true;
-  shareFallback.hidden = false;
-  showDailyLockNotice('Copie o link para compartilhar seu biscoito.');
-}
-
-async function handleCopyLink() {
-  if (cookieState !== DEFAULT_COOKIE_STATE.clean) {
-    showDailyLockNotice('Limpe os farelos para liberar o compartilhamento.');
-    return;
-  }
-  const payload = buildSharePayload();
+async function copyShareLink(payload = buildSharePayload()) {
   const textToCopy = `${payload.text}\n${payload.url}`;
 
   try {
@@ -665,4 +620,36 @@ async function handleCopyLink() {
     console.error('Não foi possível copiar o link:', error);
     showDailyLockNotice('Não foi possível copiar agora. Tente novamente.');
   }
+}
+
+async function handleShareClick() {
+  if (!dayData) return;
+  if (cookieState !== DEFAULT_COOKIE_STATE.clean) {
+    showDailyLockNotice('Limpe os farelos para liberar o compartilhamento.');
+    return;
+  }
+  const payload = buildSharePayload();
+
+  if (navigator.share && isMobileDevice()) {
+    try {
+      await navigator.share(payload);
+      showDailyLockNotice('Biscoito enviado! Compartilhe sempre que quiser.');
+      return;
+    } catch (error) {
+      if (error?.name === 'AbortError') return;
+      console.warn('Falha ao compartilhar via Web Share API:', error);
+    }
+  }
+
+  await copyShareLink(payload);
+}
+
+async function handleCopyLink() {
+  if (cookieState !== DEFAULT_COOKIE_STATE.clean) {
+    showDailyLockNotice('Limpe os farelos para liberar o compartilhamento.');
+    return;
+  }
+  const payload = buildSharePayload();
+
+  await copyShareLink(payload);
 }
