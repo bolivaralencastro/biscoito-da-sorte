@@ -12,7 +12,7 @@ export const IMAGE_BASES = {
 
 export const EMPTY_DATA_URI = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
-export const SHARE_URL = 'https://bolivaralencastro.github.io/biscoito-da-sorte/';
+export const SHARE_URL = 'https://bolivaralencastro.github.io/biscoito-da-sorte/?utm_source=biscoito-app&utm_medium=share&utm_campaign=biscoito-da-sorte&utm_content=botao';
 export const SHARE_TITLE = 'Envie um biscoito da sorte';
 export const SHARE_BASE_TEXT = [
   'Abri um biscoito da sorte hoje.',
