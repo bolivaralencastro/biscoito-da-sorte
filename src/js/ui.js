@@ -38,9 +38,6 @@ let shareCta = null;
 let shareButton = null;
 let shareFallback = null;
 let copyLinkButton = null;
-let whatsappShare = null;
-let xShare = null;
-let telegramShare = null;
 
 // === Init & setup ============================================================
 export async function initUI() {
@@ -57,9 +54,6 @@ export async function initUI() {
   shareButton = document.getElementById('shareButton');
   shareFallback = document.getElementById('shareFallback');
   copyLinkButton = document.getElementById('copyLinkButton');
-  whatsappShare = document.getElementById('whatsappShare');
-  xShare = document.getElementById('xShare');
-  telegramShare = document.getElementById('telegramShare');
 
   // Tirinha focável/ARIA para teclado (evita remoções acidentais em rewrites)
   if (fortuneStrip) {
@@ -416,9 +410,12 @@ function updateShareCtaVisibility() {
   if (!shareCta || !shareButton) return;
   const isClean = cookieState === DEFAULT_COOKIE_STATE.clean;
   shareCta.hidden = !isClean;
+  shareCta.style.display = isClean ? 'flex' : 'none';
   shareButton.disabled = !isClean;
-  if (!isClean && shareFallback) {
-    shareFallback.hidden = true;
+  if (!isClean) {
+    hideShareFallback();
+  } else {
+    shareButton.hidden = false;
   }
 }
 
@@ -605,6 +602,10 @@ function buildSharePayload() {
 
 async function handleShareClick() {
   if (!dayData) return;
+  if (cookieState !== DEFAULT_COOKIE_STATE.clean) {
+    showDailyLockNotice('Limpe os farelos para liberar o compartilhamento.');
+    return;
+  }
   const payload = buildSharePayload();
 
   if (navigator.share) {
@@ -618,36 +619,30 @@ async function handleShareClick() {
     }
   }
 
-  showShareFallback(payload);
+  showShareFallback();
 }
 
-function showShareFallback(payload) {
-  if (!shareFallback) return;
-  updateFallbackLinks(payload);
+function hideShareFallback() {
+  if (shareFallback) {
+    shareFallback.hidden = true;
+  }
+  if (shareButton) {
+    shareButton.hidden = false;
+  }
+}
+
+function showShareFallback() {
+  if (!shareFallback || !shareButton) return;
+  shareButton.hidden = true;
   shareFallback.hidden = false;
-  showDailyLockNotice('Escolha como enviar seu biscoito.');
-}
-
-function updateFallbackLinks(payload) {
-  const combined = `${payload.text}\n${payload.url}`;
-  const encodedCombined = encodeURIComponent(combined);
-  const encodedText = encodeURIComponent(payload.text);
-  const encodedUrl = encodeURIComponent(payload.url);
-
-  if (whatsappShare) {
-    whatsappShare.href = `https://wa.me/?text=${encodedCombined}`;
-  }
-
-  if (xShare) {
-    xShare.href = `https://twitter.com/intent/tweet?text=${encodedCombined}`;
-  }
-
-  if (telegramShare) {
-    telegramShare.href = `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`;
-  }
+  showDailyLockNotice('Copie o link para compartilhar seu biscoito.');
 }
 
 async function handleCopyLink() {
+  if (cookieState !== DEFAULT_COOKIE_STATE.clean) {
+    showDailyLockNotice('Limpe os farelos para liberar o compartilhamento.');
+    return;
+  }
   const payload = buildSharePayload();
   const textToCopy = `${payload.text}\n${payload.url}`;
 
